@@ -24,6 +24,7 @@ public:
     friend istream& operator>> (istream&, Participant&);
     Participant& operator = (const Participant&);
     void afficherDetails();
+
 };
 
 #endif

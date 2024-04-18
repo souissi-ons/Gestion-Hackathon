@@ -20,17 +20,58 @@ void afficherMenuPrincipal()
     cout << "Menu principal :" << endl;
     cout << "1. Saisir hackathon" << endl;
     cout << "2. Afficher tous les hackathons dans le fichier" << endl;
-    cout << "3. Quitter" << endl;
-}
+    cout << "3. Afficher un hackathon dans le fichier" << endl;
+    cout << "4. Afficher hackathon dans la map des hackathons" << endl;
+    cout << "5. Supprimer hackathon dans la map des hackathons" << endl;
+    cout << "6. Saisir equipe" << endl;
+    cout << "7. Afficher toutes les equipes dans le fichier" << endl;
+    cout << "8. Afficher une equipe dans le fichier" << endl;
+    cout << "9. Quitter" << endl;
+};
 
 void afficherMenuHackathon()
 {
     cout << "Menu hackathon :" << endl;
     cout << "1. Afficher le hackathon" << endl;
-    cout << "2. Ajouter le hackathon dans le fichier" << endl;
-    cout << "3. Afficher les noms des équipes gagnantes" << endl;
+    cout << "2. Ajouter le hackathon dans le fichier des hackathons" << endl;
+    cout << "3. Ajouter le hackathon dans un nouveau fichier" << endl;
+    cout << "4. Ajouter le hackathon dans la map des hackathons" << endl;
+    cout << "5. Afficher les noms des équipes gagnantes" << endl;
+    cout << "6. Retour au menu principal" << endl;
+};
+
+void afficherMenuEquipe()
+{
+    cout << "Menu équipe :" << endl;
+    cout << "1. Afficher l'équipe" << endl;
+    cout << "2. Ajouter l'équipe dans le fichier des equipes" << endl;
+    cout << "3. Ajouter l'equipe dans un nouveau fichier" << endl;
     cout << "4. Retour au menu principal" << endl;
 }
+
+void nouvelleEquipe(Equipe& equipe)
+{
+    equipe= Equipe();
+    Competence competence1("Programmation", "Compétence en programmation");
+    Competence competence2("Design", "Compétence en design");
+    Competence competence3("Réseaux", "Compétence en réseaux");
+
+    Participant* participant = new Participant();
+    participant->setNci(123456);
+    participant->setNom("Participant 1");
+    participant->setEmail("participant1@example.com");
+
+    participant->ajouterCompetence(competence1);
+    participant->ajouterCompetence(competence2);
+    participant->ajouterCompetence(competence3);
+
+    Date dateDeCreation(10, 3, 2024);
+
+    equipe.setNom("Équipe 1");
+    equipe.setDateCreation(dateDeCreation);
+    equipe.ajouterParticipant(participant);
+};
+
 
 void nouveauHackathon(Hackathon& hackathon)
 {
@@ -67,7 +108,7 @@ void nouveauHackathon(Hackathon& hackathon)
     for (int i = 0; i < 7; ++i)
     {
         Participant* participant = new Participant();
-        participant->setNci(100000 + i); // Numéro de NCI arbitraire pour la démo
+        participant->setNci(100000 + i);
         participant->setNom("Participant " + to_string(i + 1));
         participant->setEmail("participant" + to_string(i + 1) + "@example.com");
 
@@ -154,7 +195,7 @@ void nouveauHackathon(Hackathon& hackathon)
 
 
     // Hackathon
-    hackathon.setTitre("Hackathon C++");
+    hackathon.setTitre("HackathonC++");
     hackathon.setDescription("Hackathon sur la programmation en C++");
     hackathon.setDateDeDebut(dateDeDebut);
     hackathon.setDateDeFin(dateDeFin);
@@ -178,13 +219,14 @@ void nouveauHackathon(Hackathon& hackathon)
     Juge* juge2 = new Juge(444444, "Juge 2", "juge2@example.com", "Expertise 2");
     hackathon.ajouterJuge(juge1);
     hackathon.ajouterJuge(juge2);
-
 };
 
 
 int main()
 {
+    map<string, Hackathon> hackathons;
     Hackathon hackathon;
+    Equipe equipe;
     int choixPrincipal;
     do
     {
@@ -209,46 +251,182 @@ int main()
                 switch (choixHackathon)
                 {
                 case 1:
+                {
                     system("cls");
                     cout << hackathon << endl;
                     break;
+                }
                 case 2:
+                {
                     system("cls");
-                    hackathon.ajouterHackathonDansFichier("fichier/Hackathon.txt");
+                    hackathon.ajouterHackathonDansFichier("fichier/Hackathons.txt");
                     break;
+                }
                 case 3:
+                {
+                    system("cls");
+                    hackathon.creerFichierHackathon();
+                    break;
+                }
+                case 4:
+                {
+                    system("cls");
+                    hackathons[hackathon.getTitre()] = hackathon;
+                    cout << "Hackathon ajouté avec succès !" << endl;
+                    break;
+                }
+                case 5:
+                {
                     system("cls");
                     hackathon.ajouterEquipeGagnante();
                     hackathon.afficherEquipeGagnante();
                     break;
-                case 4:
+                }
+                case 6:
+                {
                     system("cls");
                     break;
+                }
                 default:
+                {
+                    system("cls");
                     cout << "Choix invalide." << endl;
                     break;
                 }
+                }
             }
-            while (choixHackathon != 4);
+            while (choixHackathon != 6);
             break;
         }
         case 2:
+        {
             system("cls");
-            Hackathon::afficherHackathonDeFichier("fichier/Hackathon.txt");
+            Hackathon::afficherHackathonsDeFichier("fichier/Hackathons.txt");
             break;
+        }
         case 3:
+        {
+            system("cls");
+            string titre;
+            string nomFichier;
+            cout << "Donner le titre du Hackathon à afficher: ";
+            cin >> titre;
+            nomFichier = "fichier/" + titre + ".txt";
+            Hackathon::afficherHackathonsDeFichier(nomFichier);
+            break;
+        }
+        case 4:
+        {
+            system("cls");
+            string titre;
+            cout << "Donner le titre du hackathon à afficher dans la map des hackathons : ";
+            cin >> titre;
+            if (hackathons.find(titre) != hackathons.end())
+            {
+                cout << hackathons[titre];
+            }
+            else
+            {
+                cout << "Hackathon non trouvé !" << endl;
+            }
+            break;
+        }
+        case 5:
+        {
+            system("cls");
+            string titre;
+            cout << "Donner le titre du hackathon à supprimer : ";
+            cin >> titre;
+            if (hackathons.find(titre) != hackathons.end())
+            {
+                hackathons.erase(titre);
+                cout << "Hackathon supprimé avec succès !" << endl;
+            }
+            else
+            {
+                cout << "Hackathon non trouvé !" << endl;
+            }
+            break;
+        }
+        case 6:
+        {
+            system("cls");
+            //cin >> equipe;
+            nouvelleEquipe(equipe);
+            int choixEquipe;
+            do
+            {
+                afficherMenuEquipe();
+                cout << "Choix : ";
+                cin >> choixEquipe;
+
+                switch (choixEquipe)
+                {
+                case 1:
+                {
+                    system("cls");
+                    cout << equipe << endl;
+                    break;
+                }
+                case 2:
+                {
+                    system("cls");
+                    equipe.ajouterEquipeDansFichier("fichier/Equipes.txt");
+                    break;
+                }
+                case 3:
+                {
+                    system("cls");
+                    equipe.creerFichierEquipe();
+                    break;
+                }
+                case 4:
+                {
+                    system("cls");
+                    break;
+                }
+                default:
+                {
+                    system("cls");
+                    cout << "Choix invalide." << endl;
+                    break;
+                }
+                }
+            }
+            while (choixEquipe != 4);
+            break;
+        }
+        case 7:
+        {
+            system("cls");
+            Equipe::afficherEquipesDeFichier("fichier/Equipes.txt");
+            break;
+        }
+        case 8:
+        {
+            system("cls");
+            string nomEquipe;
+            string nomFichier;
+            cout << "Donner le nom de l'equipe à afficher: ";
+            cin >> nomEquipe;
+            nomFichier = "fichier/" + nomEquipe + ".txt";
+            Equipe::afficherEquipesDeFichier(nomFichier);
+            break;
+        }
+        case 9:
+        {
             system("cls");
             cout << "Programme terminé" << endl;
             break;
+        }
         default:
+        {
             system("cls");
             cout << "Choix invalide." << endl;
             break;
         }
+        }
     }
-    while (choixPrincipal != 3);
-
-
-
+    while (choixPrincipal != 9);
     return 0;
 };

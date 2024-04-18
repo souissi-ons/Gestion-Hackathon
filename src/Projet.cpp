@@ -74,31 +74,3 @@ void Projet::afficherDetails(){
     cout << "Equipe : " <<  this->equipe;
 };
 
-/*ostream& operator<<(ostream& out, Projet& p)
-{
-    out << "Titre du projet: " << p.titre << ", Description du projet: " << p.description << "\n" << "Evaluation du projet : " << p.evaluation << "Equipe du projet: " <<  p.equipe;
-    return out;
-};
-
-istream& operator>>(istream& in, Projet& p)
-{
-    cout << "Entrez le titre du projet : ";
-    getline(in, p.titre);
-    in.ignore();
-    cout << "Entrez la description du projet : ";
-    getline(in, p.description);
-    in.ignore();in.ignore(numeric_limits<streamsize>::max(), '\n');
-    in >> p.evaluation;
-    in >> p.equipe;
-    return in;
-};
-
-Projet& Projet::operator=(const Projet& autreProjet)
-{
-    this->titre = autreProjet.titre;
-    this->description = autreProjet.description;
-    this->evaluation = autreProjet.evaluation;
-    this->equipe = autreProjet.equipe;
-    return *this;
-};*/
-

@@ -1,6 +1,7 @@
 #include <string>;
 #include <vector>;
 #include <iostream>;
+#include <fstream>;
 #include "Equipe.h";
 #include "Projet.h";
 #include <limits>
@@ -18,7 +19,6 @@ Equipe::Equipe(const Equipe& e)
         p=new Participant(*e.participants[i]);
         this->participants.push_back(p);
     }
-
 };
 
 Equipe::~Equipe()
@@ -150,12 +150,12 @@ istream& operator>>(istream& in, Equipe* e)
     getline(in, e->nom);
     in.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << "Entrez la date de création de l'équipe : ";
-    in >> e->dateCreation; // Utilisation de l'opérateur >> de Date
+    in >> e->dateCreation;
     int continuer;
     do
     {
         Participant* p = new Participant();
-        in >> *p; // Utilisation de l'opérateur >> de Participant
+        in >> *p;
         e->participants.push_back(p);
         cout << "Veuillez saisir 1 si vous voulez ajouter un autre participant sinon 0: ";
         in >> continuer;
@@ -164,3 +164,79 @@ istream& operator>>(istream& in, Equipe* e)
     return in;
 };
 
+void Equipe::ajouterEquipeDansFichier(const string& nomFichier)
+{
+    try
+    {
+        ofstream fichier(nomFichier, ios::app);
+        if (!fichier.is_open())
+        {
+            throw runtime_error("Impossible d'ouvrir le fichier.");
+        }
+        fichier << *this;
+        fichier << endl;
+        fichier << endl;
+        fichier.close();
+        cout << "Equipe ajoutée avec succès dans le fichier." << endl;
+    }
+    catch (const exception& e)
+    {
+        cerr << "Erreur : " << e.what() << endl;
+    }
+};
+
+void Equipe::creerFichierEquipe()
+{
+    if (this->nom.empty())
+    {
+        cerr << "Erreur : Le nom de l'equipe est vide." << endl;
+        return;
+    }
+    string nomFichier = "fichier/" +this->nom + ".txt";
+    try
+    {
+        ofstream fichier(nomFichier);
+
+        if (!fichier.is_open())
+        {
+            throw runtime_error("Impossible d'ouvrir le fichier.");
+        }
+        fichier << *this;
+        fichier << endl;
+        fichier << endl;
+        fichier.close();
+        cout << "Fichier equipe créé avec succès : " << nomFichier << endl;
+    }
+    catch (const exception& e)
+    {
+        cerr << "Erreur : " << e.what() << endl;
+    }
+};
+
+void Equipe::afficherEquipesDeFichier(const string& nomFichier)
+{
+    try
+    {
+        ifstream fichier(nomFichier);
+        if (!fichier.good())
+        {
+            cerr << "Erreur : Le fichier avec ce nom n'existe pas." << endl;
+            return;
+        }
+        if (!fichier.is_open())
+        {
+            throw runtime_error("Impossible d'ouvrir le fichier.");
+        }
+        string ligne;
+        while (!fichier.eof())
+        {
+            getline(fichier, ligne);
+            cout << ligne << endl;
+        }
+        fichier.close();
+    }
+    catch (const exception& e)
+    {
+        cerr << "Erreur : " << e.what() << endl;
+    }
+};

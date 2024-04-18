@@ -80,7 +80,7 @@ istream& operator>>(istream& in, ProjetWeb& p)
     do
     {
         Technologie* technologie = new Technologie();
-        in >> *technologie; // Utilisation de l'opérateur >> de la classe Technologie
+        in >> *technologie;
         p.technologies.push_back(technologie);
         do
         {

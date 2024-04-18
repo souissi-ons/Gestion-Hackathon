@@ -31,7 +31,9 @@ public:
     friend ostream& operator << (ostream&, Equipe*);
     friend istream& operator >> (istream&, Equipe*);
     Equipe& operator=(const Equipe&);
-
+    static void afficherEquipesDeFichier(const string&);
+    void ajouterEquipeDansFichier(const string&);
+    void creerFichierEquipe();
 };
 
 #endif

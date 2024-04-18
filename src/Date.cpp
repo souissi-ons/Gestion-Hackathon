@@ -134,17 +134,12 @@ bool Date::operator==(Date& autreDate) {
             this->jour == autreDate.jour);
 };
 
-
 bool Date::operator>=(Date& autreDate)
 {
     return !(*this < autreDate);
 };
 
-
 bool Date::operator<=(Date& autreDate)
 {
     return !(*this > autreDate);
 };
-
-
-

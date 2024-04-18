@@ -9,7 +9,6 @@ using namespace std;
 
 Participant::Participant() {};
 
-// Constructeur par recopie
 Participant::Participant(const Participant& p)
 {
     this->nci = p.nci;
@@ -43,15 +42,12 @@ void Participant::setCompetences(vector <Competence *> competences)
     this->competences = competences;
 }
 
-// Ajouter competence dans participant
 void Participant::ajouterCompetence(const Competence& competence)
 {
-    // Créer une nouvelle instance de Competence et l'ajouter à la liste
     Competence* nouvelleCompetence = new Competence(competence);
     this->competences.push_back(nouvelleCompetence);
 };
 
-// Rechercher competence dans participant
 int Participant::rechercherCompetence(string nomCompetence)
 {
     for (int i=0; i<this->competences.size(); i++)
@@ -64,7 +60,6 @@ int Participant::rechercherCompetence(string nomCompetence)
     return -1;
 };
 
-// Supprimer competence du participant
 void Participant::supprimerCompetence(string nomCompetence)
 {
     int p = rechercherCompetence(nomCompetence);
@@ -141,4 +136,4 @@ void Participant::afficherDetails(){
     {
         cout << "Competence " << i+1 << ": " << this->competences[i];
     }
-}
+};

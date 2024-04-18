@@ -428,6 +428,34 @@ istream& operator>>(istream& in, Hackathon& h)
     return in;
 };
 
+void Hackathon::creerFichierHackathon()
+{
+    if (this->titre.empty())
+    {
+        cerr << "Erreur : Le titre du hackathon est vide." << endl;
+        return;
+    }
+    string nomFichier = "fichier/" +this->titre + ".txt";
+    try
+    {
+        ofstream fichier(nomFichier);
+
+        if (!fichier.is_open())
+        {
+            throw runtime_error("Impossible d'ouvrir le fichier.");
+        }
+        fichier << *this;
+        fichier << endl;
+        fichier << endl;
+        fichier.close();
+        cout << "Fichier hackathon créé avec succès : " << nomFichier << endl;
+    }
+    catch (const exception& e)
+    {
+        cerr << "Erreur : " << e.what() << endl;
+    }
+};
+
 void Hackathon::ajouterHackathonDansFichier(const string& nomFichier)
 {
     try
@@ -449,11 +477,16 @@ void Hackathon::ajouterHackathonDansFichier(const string& nomFichier)
     }
 };
 
-void Hackathon::afficherHackathonDeFichier(const string& nomFichier)
+void Hackathon::afficherHackathonsDeFichier(const string& nomFichier)
 {
     try
     {
-        ifstream fichier(nomFichier, ios::app);
+        ifstream fichier(nomFichier);
+        if (!fichier.good())
+        {
+            cerr << "Erreur : Le fichier avec ce nom n'existe pas." << endl;
+            return;
+        }
         if (!fichier.is_open())
         {
             throw runtime_error("Impossible d'ouvrir le fichier.");
@@ -552,7 +585,6 @@ Hackathon& Hackathon::operator=(const Hackathon* other)
     return *this;
 };
 
-
 void Hackathon::afficherEquipeGagnante()
 {
     cout << "Équipes gagnantes :" << endl;
@@ -561,7 +593,6 @@ void Hackathon::afficherEquipeGagnante()
         cout << rang << " : " << nomEquipe << endl;
     }
 };
-
 
 ostream& operator<<(ostream& out, Hackathon* h)
 {

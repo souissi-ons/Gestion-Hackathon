@@ -65,8 +65,9 @@ public:
     friend istream& operator >> (istream&, Hackathon*);
     Hackathon& operator=(const Hackathon&);
     Hackathon& operator=(const Hackathon*);
+    static void afficherHackathonsDeFichier(const string&);
     void ajouterHackathonDansFichier(const string&);
-    static void afficherHackathonDeFichier(const string&);
+    void creerFichierHackathon();
     void ajouterEquipeGagnante();
     void afficherEquipeGagnante();
 };

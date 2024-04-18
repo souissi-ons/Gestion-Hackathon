@@ -104,13 +104,13 @@ istream& operator>>(istream& in, Gagnant& g)
     if (choix == 1)
     {
         ProjetWeb projetWeb;
-        in >> projetWeb; // Utilisation de l'opérateur >> de ProjetWeb pour saisir les détails
+        in >> projetWeb;
         g.projet = &projetWeb;
     }
     else if (choix == 2)
     {
         ProjetEmbarque projetEmbarque;
-        in >> projetEmbarque; // Utilisation de l'opérateur >> de ProjetEmbarque pour saisir les détails
+        in >> projetEmbarque;
         g.projet = &projetEmbarque;
     };
     g.score = g.projet->getEvaluation()->calculerMoyenne();
