@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ProjetHackathon" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/ProjetHackathon" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/ProjetHackathon" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="include/Competence.h" />
+		<Unit filename="include/Date.h" />
+		<Unit filename="include/Equipe.h" />
+		<Unit filename="include/Evaluation.h" />
+		<Unit filename="include/Gagnant.h" />
+		<Unit filename="include/Hackathon.h" />
+		<Unit filename="include/Juge.h" />
+		<Unit filename="include/Materiel.h" />
+		<Unit filename="include/Organisateur.h" />
+		<Unit filename="include/Participant.h" />
+		<Unit filename="include/Personne.h" />
+		<Unit filename="include/Projet.h" />
+		<Unit filename="include/ProjetEmbarque.h" />
+		<Unit filename="include/ProjetWeb.h" />
+		<Unit filename="include/Technologie.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/Competence.cpp" />
+		<Unit filename="src/Date.cpp" />
+		<Unit filename="src/Equipe.cpp" />
+		<Unit filename="src/Evaluation.cpp" />
+		<Unit filename="src/Gagnant.cpp" />
+		<Unit filename="src/Hackathon.cpp" />
+		<Unit filename="src/Juge.cpp" />
+		<Unit filename="src/Materiel.cpp" />
+		<Unit filename="src/Organisateur.cpp" />
+		<Unit filename="src/Participant.cpp" />
+		<Unit filename="src/Personne.cpp" />
+		<Unit filename="src/Projet.cpp" />
+		<Unit filename="src/ProjetEmbarque.cpp" />
+		<Unit filename="src/ProjetWeb.cpp" />
+		<Unit filename="src/Technologie.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

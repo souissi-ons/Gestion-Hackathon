@@ -1,0 +1,195 @@
+# depslib dependency file v1.0
+1713362030 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\organisateur.cpp
+	<string>
+	<iostream>
+	<fstream>
+	<sstream>
+	"Organisateur.h"
+	<limits>
+
+1713361563 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\organisateur.h
+	<string>
+	"Personne.h"
+
+1713367697 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\participant.cpp
+	<string>
+	<vector>
+	<iostream>
+	<fstream>
+	<sstream>
+	"Participant.h"
+	<limits>
+
+1713367711 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\participant.h
+	<vector>
+	"Personne.h"
+	"Competence.h"
+
+1713397538 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\main.cpp
+	<string>
+	<vector>
+	<iostream>
+	"Hackathon.h"
+	"Projet.h"
+	"ProjetEmbarque.h"
+	"ProjetWeb.h"
+	"Gagnant.h"
+	"Participant.h"
+	"Date.h"
+	"Organisateur.h"
+	"Juge.h"
+
+1713364269 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\personne.h
+	<string>
+
+1713364799 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\personne.cpp
+	<string>
+	<iostream>
+	"Personne.h"
+
+1713222258 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\competence.h
+	<string>
+
+1713312677 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\competence.cpp
+	<string>
+	<iostream>
+	<fstream>
+	<sstream>
+	"Competence.h"
+	<limits>
+
+1713362066 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\juge.cpp
+	<string>
+	<iostream>
+	"Juge.h"
+	<limits>
+
+1713361558 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\juge.h
+	<string>
+	"Personne.h"
+
+1713365064 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\projet.cpp
+	<string>
+	<iostream>
+	"Projet.h"
+	<limits>
+	"Evaluation.h"
+
+1713364541 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\projet.h
+	<string>
+	"Projet.h"
+	"Evaluation.h"
+	"Equipe.h"
+
+1713222199 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\date.cpp
+	"Date.h"
+
+1713222132 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\date.h
+	<iostream>
+	<chrono>
+
+1713354076 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\equipe.cpp
+	<string>
+	<vector>
+	<iostream>
+	"Equipe.h"
+	"Projet.h"
+	<limits>
+
+1713354026 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\equipe.h
+	<string>
+	<vector>
+	"Equipe.h"
+	"Participant.h"
+	"Date.h"
+
+1713353935 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\evaluation.cpp
+	<iostream>
+	"Evaluation.h"
+
+1713317410 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\evaluation.h
+
+1713397919 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\projetweb.h
+	<list>
+	"Projet.h"
+	"Technologie.h"
+
+1713397963 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\technologie.h
+	<string>
+
+1713397948 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\technologie.cpp
+	<string>
+	<iostream>
+	"Technologie.h"
+	<limits>
+
+1713396072 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\materiel.cpp
+	<string>
+	<iostream>
+	"Materiel.h"
+	<limits>
+
+1713396092 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\materiel.h
+	<string>
+
+1713397911 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\projetweb.cpp
+	<string>
+	<list>
+	<iostream>
+	"ProjetWeb.h"
+	"Projet.h"
+	"Technologie.h"
+
+1713397268 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\projetembarque.cpp
+	<string>
+	<list>
+	<iostream>
+	"ProjetEmbarque.h"
+	"Materiel.h"
+	"Projet.h"
+
+1713395747 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\projetembarque.h
+	<list>
+	"Projet.h"
+	"Materiel.h"
+
+1713296692 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\gagnant.h
+	<string>
+	"Projet.h"
+
+1713317213 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\gagnant.cpp
+	<string>
+	<iostream>
+	"Equipe.h"
+	"Gagnant.h"
+	"ProjetEmbarque.h"
+	"ProjetWeb.h"
+	<limits>
+
+1713398125 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\hackathon.cpp
+	<string>
+	<vector>
+	<iostream>
+	"Hackathon.h"
+	"Projet.h"
+	"ProjetWeb.h"
+	"ProjetEmbarque.h"
+	"Gagnant.h"
+	"Equipe.h"
+	"Date.h"
+	<algorithm>
+	<fstream>
+
+1713372343 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\hackathon.h
+	<string>
+	<vector>
+	<list>
+	<map>
+	<iterator>
+	"Gagnant.h"
+	"Projet.h"
+	"Date.h"
+	"Organisateur.h"
+	"Juge.h"
+	"Date.h"
+
