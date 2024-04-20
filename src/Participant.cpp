@@ -71,6 +71,18 @@ void Participant::supprimerCompetence(const string& nomCompetence) {
 
 ostream& operator<<(ostream& out, Participant& p) {
     out << "Cin du participant: " << p.getNci() << ", Nom du participant: " << p.getNom() << ", Email du participant: " << p.getEmail() << endl;
+    out << "Numeros de telephone du participant: ";
+    list<string>::iterator itNumeros;
+    for (itNumeros = p.numerosTelephone.begin(); itNumeros != p.numerosTelephone.end(); ++itNumeros) {
+        out << *itNumeros << ", ";
+    }
+    out << endl;
+    out << "Adresses du participant: ";
+    list<string>::iterator itAdresses;
+    for (itAdresses = p.adresses.begin(); itAdresses != p.adresses.end(); ++itAdresses) {
+        out << *itAdresses << ", ";
+    }
+    out << endl;
     out << "Competences du participant: " << endl;
     map<string, string>::iterator it;
     for (it = p.competences.begin(); it != p.competences.end(); ++it) {
@@ -83,10 +95,39 @@ istream& operator>>(istream& in, Participant& p) {
     cout << "Entrez le NCI du participant : ";
     in >> p.nci;
     cout << "Entrez le nom du participant : ";
-    in.ignore();
     getline(in, p.nom);
+    in.ignore();
     cout << "Entrez l'email du participant : ";
     getline(in, p.email);
+    in.ignore();
+    int continuerNumeros;
+    do {
+        string numero;
+        cout << "Entrez un numéro de téléphone : ";
+        getline(cin, numero);
+        in.ignore();
+        p.ajouterNumeroTelephone(numero);
+
+        do {
+            cout << "Veuillez saisir 1 si vous voulez ajouter un autre numéro de téléphone sinon 0: ";
+            cin >> continuerNumeros;
+        } while (continuerNumeros != 0 && continuerNumeros != 1);
+    } while (continuerNumeros == 1);
+
+    int continuerAdresses;
+    do {
+        string adresse;
+        cout << "Entrez une adresse : ";
+        getline(cin, adresse);
+        in.ignore();
+        p.ajouterAdresse(adresse);
+
+        do {
+            cout << "Veuillez saisir 1 si vous voulez ajouter une autre adresse sinon 0: ";
+            cin >> continuerAdresses;
+        } while (continuerAdresses != 0 && continuerAdresses != 1);
+    } while (continuerAdresses == 1);
+
     Competence c;
     int continuer;
     do {

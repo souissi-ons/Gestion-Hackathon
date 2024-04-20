@@ -141,14 +141,32 @@ void nouveauHackathon(Hackathon& hackathon)
         // Attribution de compétences différentes à chaque participant
         if (i < 2)
         {
+            for (int j = 0; j < 3; ++j)
+            {
+                participant->ajouterNumeroTelephone("1234567" + to_string(i) + to_string(j));
+                participant->ajouterAdresse("Adresse " + to_string(i) + to_string(j));
+
+            }
             participant->ajouterCompetence(competence1);
         }
         else if (i < 5)
         {
+            for (int j = 0; j < 2; ++j)
+            {
+                participant->ajouterNumeroTelephone("1234567" + to_string(i) + to_string(j));
+                participant->ajouterAdresse("Adresse " + to_string(i) + to_string(j));
+
+            }
             participant->ajouterCompetence(competence2);
         }
         else
         {
+            for (int j = 0; j < 4; ++j)
+            {
+                participant->ajouterNumeroTelephone("1234567" + to_string(i) + to_string(j));
+                participant->ajouterAdresse("Adresse " + to_string(i) + to_string(j));
+
+            }
             participant->ajouterCompetence(competence3);
         }
 
@@ -236,8 +254,18 @@ void nouveauHackathon(Hackathon& hackathon)
     hackathon.remplirGagnants("2000DT", "1000DT", "500DT");
 
     // Organisateurs
+       // Organisateurs
     Organisateur* org1 = new Organisateur(111111, "Organisateur 1", "org1@example.com", "Rôle 1");
     Organisateur* org2 = new Organisateur(222222, "Organisateur 2", "org2@example.com", "Rôle 2");
+    org1->ajouterNumeroTelephone("123456789");
+    org1->ajouterNumeroTelephone("987654321");
+    org2->ajouterNumeroTelephone("987654321");
+    org2->ajouterNumeroTelephone("123456789");
+    org1->ajouterAdresse("Adresse 1");
+    org1->ajouterAdresse("Adresse 7");
+    org1->ajouterAdresse("Adresse 8");
+    org2->ajouterAdresse("Adresse 2");
+    org2->ajouterAdresse("Adresse 3");
     hackathon.ajouterOrganisateur(org1);
     hackathon.ajouterOrganisateur(org2);
 
@@ -252,7 +280,15 @@ void nouveauHackathon(Hackathon& hackathon)
     juge1->ajouterSpecialisation(spec1);
     juge1->ajouterSpecialisation(spec2);
     juge2->ajouterSpecialisation(spec3);
+    juge1->ajouterNumeroTelephone("111111111");
+    juge1->ajouterAdresse("Adresse 4");
+    juge1->ajouterAdresse("Adresse 5");
+    juge2->ajouterNumeroTelephone("222222222");
+    juge2->ajouterNumeroTelephone("333333333");
+    juge2->ajouterNumeroTelephone("444444444");
+    juge2->ajouterAdresse("Adresse 6");
 
+    // Ajout des juges au hackathon
     hackathon.ajouterJuge(juge1);
     hackathon.ajouterJuge(juge2);
 };

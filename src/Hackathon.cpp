@@ -312,24 +312,24 @@ ostream& operator<<(ostream& out, Hackathon& h)
     out << "Date de debut du hackathon: " << h.dateDeDebut << ", Date de fin du hackathon: " << h.dateDeFin << ", Theme du hackathon: " << h.theme <<  endl;
     out << endl;
     out << "Organisateurs du hackathon:" << endl;
-    int i =0;
-    for (const auto& organisateur : h.organisateurs)
+    int i = 0;
+    for (list<Organisateur*>::iterator it = h.organisateurs.begin(); it != h.organisateurs.end(); ++it)
     {
         i++;
-        out << "Organisateur " << i << ": " << *organisateur;
+        out << "Organisateur " << i << ": " << **it;
     }
     out << endl;
     out << "Jury du hackathon:" << endl;
     out << endl;
-    i=0;
-    for (const auto& juge : h.juges)
+    i = 0;
+    for (list<Juge*>::iterator it = h.juges.begin(); it != h.juges.end(); ++it)
     {
         i++;
         out << "Membre du jury " << i << ": " << endl;
-        out << *juge << endl;
-
+        out << **it << endl;
     }
     out << endl;
+
     out << "Projets du hackathon:" << endl;
     out << endl;
     i = 0;
@@ -422,13 +422,13 @@ istream& operator>>(istream& in, Hackathon& h)
         if (choix == 1)
         {
             ProjetWeb* projetWeb = new ProjetWeb();
-            in >> *projetWeb; // Utilisation de l'opérateur >> de ProjetWeb* pour saisir les détails
+            in >> *projetWeb;
             h.projets.push_back(projetWeb);
         }
         else if (choix == 2)
         {
             ProjetEmbarque* projetEmbarque = new ProjetEmbarque();
-            in >> *projetEmbarque; // Utilisation de l'opérateur >> de ProjetEmbarque* pour saisir les détails
+            in >> *projetEmbarque;
             h.projets.push_back(projetEmbarque);
         }
         else
@@ -541,7 +541,7 @@ void Hackathon::ajouterEquipeGagnante()
     {
         int rangEquipe = gagnant->getRang();
         string nomEquipe = gagnant->getProjet()->getEquipe()->getNom();
-        this->equipeGagnante[rangEquipe] = nomEquipe;
+        equipeGagnante[rangEquipe] = nomEquipe;
     };
 };
 
