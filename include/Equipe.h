@@ -8,7 +8,8 @@
 #include "Date.h";
 using namespace std;
 
-class Equipe{
+class Equipe
+{
 private:
     string nom;
     Date dateCreation;
@@ -34,6 +35,10 @@ public:
     static void afficherEquipesDeFichier(const string&);
     void ajouterEquipeDansFichier(const string&);
     void creerFichierEquipe();
+    Participant* participantAvecPlusDeCompetences();
+    void trierParticipantsParNom();
+    void trierParticipantsParNci();
+    void afficherParticipants();
 };
 
 #endif

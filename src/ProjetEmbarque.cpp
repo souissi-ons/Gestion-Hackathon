@@ -6,10 +6,13 @@
 #include "Projet.h"
 using namespace std;
 
-ProjetEmbarque::ProjetEmbarque() {};
+ProjetEmbarque::ProjetEmbarque() {
+    Projet::nombreProjets ++;
+};
 
 ProjetEmbarque::ProjetEmbarque(const ProjetEmbarque& pe)
 {
+    Projet::nombreProjets++;
     this->titre = pe.titre;
     this->description = pe.description;
 
@@ -61,7 +64,7 @@ void ProjetEmbarque::supprimerMateriel(string nomMateriel)
     Materiel* materiel = rechercherMateriel(nomMateriel);
     if (materiel!= nullptr)
     {
-         this->materiels.remove(materiel);
+        this->materiels.remove(materiel);
         delete materiel;
     }
 };
@@ -71,7 +74,7 @@ ostream& operator<<(ostream& out, ProjetEmbarque& p)
     out << "Projet embarqué : Titre du projet: " << p.titre << ", Description du projet: " << p.description << "\n" << "Evaluation du projet : " << p.evaluation << "Equipe du projet: " <<  p.equipe;
     out << "Materiels du projet: " << endl;
     int i=0;
-     for (list<Materiel*>::const_iterator it = p.materiels.begin(); it != p.materiels.end(); ++it)
+    for (list<Materiel*>::const_iterator it = p.materiels.begin(); it != p.materiels.end(); ++it)
     {
         i++;
         out << "Materiel " << i << ": " << *it ;
@@ -86,7 +89,8 @@ istream& operator>>(istream& in, ProjetEmbarque& p)
     in.ignore();
     cout << "Entrez la description du projet : ";
     getline(in, p.description);
-    in.ignore();in.ignore(numeric_limits<streamsize>::max(), '\n');
+    in.ignore();
+    in.ignore(numeric_limits<streamsize>::max(), '\n');
     in >> p.evaluation;
     in >> p.equipe;
     int continuer;
@@ -124,6 +128,26 @@ ProjetEmbarque& ProjetEmbarque::operator=(const ProjetEmbarque& autreProjet)
         this->ajouterMateriel(*it);
     }
     return *this;
+};
+
+bool ProjetEmbarque::operator>(ProjetEmbarque& autreProjet)
+{
+    return this->materiels.size() > autreProjet.materiels.size();
+};
+
+bool ProjetEmbarque::operator<(ProjetEmbarque& autreProjet)
+{
+    return this->materiels.size() < autreProjet.materiels.size();
+};
+
+bool ProjetEmbarque::operator>=(ProjetEmbarque& autreProjet)
+{
+    return this->materiels.size() >= autreProjet.materiels.size();
+};
+
+bool ProjetEmbarque::operator<=(ProjetEmbarque& autreProjet)
+{
+    return this->materiels.size() <= autreProjet.materiels.size();
 };
 
 void ProjetEmbarque::afficherDetails()

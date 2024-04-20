@@ -6,10 +6,13 @@
 #include "Technologie.h"
 using namespace std;
 
-ProjetWeb::ProjetWeb() {};
+ProjetWeb::ProjetWeb() {
+    Projet::nombreProjets ++;
+};
 
 ProjetWeb::ProjetWeb(const ProjetWeb& pw)
 {
+    Projet::nombreProjets ++;
     this->titre = pw.titre;
     this->description = pw.description;
 
@@ -49,13 +52,14 @@ Technologie* ProjetWeb::rechercherTechnologie(string nomTechnologie)
     {
         if ((*it)->getNom() ==nomTechnologie)
         {
-             return *it;
+            return *it;
         }
     }
     return nullptr;
 };
 
-void ProjetWeb::supprimerTechnologie(string nomTechnologie){
+void ProjetWeb::supprimerTechnologie(string nomTechnologie)
+{
     Technologie* technologie = rechercherTechnologie(nomTechnologie);
     if (technologie!= nullptr)
     {
@@ -127,6 +131,26 @@ ProjetWeb& ProjetWeb::operator=(const ProjetWeb& autreProjet)
     return *this;
 };
 
+bool ProjetWeb::operator>(ProjetWeb& autreProjet)
+{
+    return this->technologies.size() > autreProjet.technologies.size();
+};
+
+bool ProjetWeb::operator<(ProjetWeb& autreProjet)
+{
+    return this->technologies.size() < autreProjet.technologies.size();
+};
+
+bool ProjetWeb::operator>=(ProjetWeb& autreProjet)
+{
+    return this->technologies.size() >= autreProjet.technologies.size();
+};
+
+bool ProjetWeb::operator<=(ProjetWeb& autreProjet)
+{
+    return this->technologies.size() <= autreProjet.technologies.size();
+};
+
 void ProjetWeb::afficherDetails()
 {
     cout << "Détails du projet web" << endl;
@@ -134,7 +158,7 @@ void ProjetWeb::afficherDetails()
     int i=0;
     for (list<Technologie*>::const_iterator it = this->technologies.begin(); it != this->technologies.end(); ++it)
     {
-       i++;
+        i++;
         cout << "Materiel " << i << ": " << *it ;
     }
 };

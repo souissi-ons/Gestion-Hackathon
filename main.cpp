@@ -10,10 +10,9 @@
 #include "Date.h"
 #include "Organisateur.h"
 #include "Juge.h"
-
+#include "Specialisation.h"
 
 using namespace std;
-
 
 void afficherMenuPrincipal()
 {
@@ -21,11 +20,11 @@ void afficherMenuPrincipal()
     cout << "1. Saisir hackathon" << endl;
     cout << "2. Afficher tous les hackathons dans le fichier" << endl;
     cout << "3. Afficher un hackathon dans le fichier" << endl;
-    cout << "4. Afficher hackathon dans la map des hackathons" << endl;
-    cout << "5. Supprimer hackathon dans la map des hackathons" << endl;
-    cout << "6. Saisir equipe" << endl;
-    cout << "7. Afficher toutes les equipes dans le fichier" << endl;
-    cout << "8. Afficher une equipe dans le fichier" << endl;
+    cout << "4. Saisir equipe" << endl;
+    cout << "5. Afficher toutes les equipes dans le fichier" << endl;
+    cout << "6. Afficher une equipe dans le fichier" << endl;
+    cout << "7. Afficher le nombre total de participants dans tous le hackathon: " << endl;
+    cout << "8. Afficher le nombre total de projets dans tous le hackathon: "  << endl;
     cout << "9. Quitter" << endl;
 };
 
@@ -35,9 +34,15 @@ void afficherMenuHackathon()
     cout << "1. Afficher le hackathon" << endl;
     cout << "2. Ajouter le hackathon dans le fichier des hackathons" << endl;
     cout << "3. Ajouter le hackathon dans un nouveau fichier" << endl;
-    cout << "4. Ajouter le hackathon dans la map des hackathons" << endl;
-    cout << "5. Afficher les noms des équipes gagnantes" << endl;
-    cout << "6. Retour au menu principal" << endl;
+    cout << "4. Afficher les noms des équipes gagnantes" << endl;
+    cout << "5. Rechercher un membre de jury par numéro de carte identité" << endl;
+    cout << "6. Supprimer un membre de jury par numéro de carte identité" << endl;
+    cout << "7. Rechercher un organisateur par numéro de carte identité" << endl;
+    cout << "8. Supprimer un organisateur par numéro de carte identité" << endl;
+    cout << "9. Afficher le projet embarqué avec le plus de matériels" << endl;
+    cout << "10. Afficher le projet web avec le plus de technologies" << endl;
+    cout << "11. Retour au menu principal" << endl;
+
 };
 
 void afficherMenuEquipe()
@@ -46,8 +51,12 @@ void afficherMenuEquipe()
     cout << "1. Afficher l'équipe" << endl;
     cout << "2. Ajouter l'équipe dans le fichier des equipes" << endl;
     cout << "3. Ajouter l'equipe dans un nouveau fichier" << endl;
-    cout << "4. Retour au menu principal" << endl;
-}
+    cout << "4. Afficher le participant avec le plus de compétences" << endl;
+    cout << "5. Trier les participants par nom" << endl;
+    cout << "6. Trier les participants par NCI" << endl;
+    cout << "7. Afficher tous les participants de l'équipe" << endl;
+    cout << "8. Retour au menu principal" << endl;
+};
 
 void nouvelleEquipe(Equipe& equipe)
 {
@@ -56,20 +65,37 @@ void nouvelleEquipe(Equipe& equipe)
     Competence competence2("Design", "Compétence en design");
     Competence competence3("Réseaux", "Compétence en réseaux");
 
-    Participant* participant = new Participant();
-    participant->setNci(123456);
-    participant->setNom("Participant 1");
-    participant->setEmail("participant1@example.com");
+    Participant* participant1 = new Participant();
+    participant1->setNci(333333);
+    participant1->setNom("Participant 1");
+    participant1->setEmail("participant1@example.com");
 
-    participant->ajouterCompetence(competence1);
-    participant->ajouterCompetence(competence2);
-    participant->ajouterCompetence(competence3);
+    participant1->ajouterCompetence(competence1);
+    participant1->ajouterCompetence(competence2);
+
+    Participant* participant2 = new Participant();
+    participant2->setNci(222222);
+    participant2->setNom("Participant 2");
+    participant2->setEmail("participant2@example.com");
+
+    participant2->ajouterCompetence(competence1);
+    participant2->ajouterCompetence(competence2);
+    participant2->ajouterCompetence(competence3);
+
+    Participant* participant3 = new Participant();
+    participant3->setNci(111111);
+    participant3->setNom("Participant 3");
+    participant3->setEmail("participant3@example.com");
+
+    participant3->ajouterCompetence(competence3);
 
     Date dateDeCreation(10, 3, 2024);
 
     equipe.setNom("Équipe 1");
     equipe.setDateCreation(dateDeCreation);
-    equipe.ajouterParticipant(participant);
+    equipe.ajouterParticipant(participant1);
+    equipe.ajouterParticipant(participant2);
+    equipe.ajouterParticipant(participant3);
 };
 
 
@@ -178,6 +204,7 @@ void nouveauHackathon(Hackathon& hackathon)
     projetWeb2->setEquipe(equipe2);
     projetWeb2->setEvaluation(eval2);
     projetWeb2->ajouterTechnologie(technologieWeb2);
+    projetWeb2->ajouterTechnologie(technologieWeb3);
 
     ProjetWeb* projetWeb3 = new ProjetWeb();
     projetWeb3->setTitre("Projet Web 3");
@@ -214,9 +241,18 @@ void nouveauHackathon(Hackathon& hackathon)
     hackathon.ajouterOrganisateur(org1);
     hackathon.ajouterOrganisateur(org2);
 
+    // Création des spécialisations
+    Specialisation* spec1 = new Specialisation("Langages de programmation", "Expertise en C++, Java, Python");
+    Specialisation* spec2 = new Specialisation("Design UI/UX", "Expertise en conception d'interfaces utilisateur");
+    Specialisation* spec3 = new Specialisation("Sécurité informatique", "Expertise en cryptographie et protection des données");
+
     // Juges
     Juge* juge1 = new Juge(333333, "Juge 1", "juge1@example.com", "Expertise 1");
     Juge* juge2 = new Juge(444444, "Juge 2", "juge2@example.com", "Expertise 2");
+    juge1->ajouterSpecialisation(spec1);
+    juge1->ajouterSpecialisation(spec2);
+    juge2->ajouterSpecialisation(spec3);
+
     hackathon.ajouterJuge(juge1);
     hackathon.ajouterJuge(juge2);
 };
@@ -224,7 +260,6 @@ void nouveauHackathon(Hackathon& hackathon)
 
 int main()
 {
-    map<string, Hackathon> hackathons;
     Hackathon hackathon;
     Equipe equipe;
     int choixPrincipal;
@@ -271,18 +306,95 @@ int main()
                 case 4:
                 {
                     system("cls");
-                    hackathons[hackathon.getTitre()] = hackathon;
-                    cout << "Hackathon ajouté avec succès !" << endl;
+                    hackathon.ajouterEquipeGagnante();
+                    hackathon.afficherEquipeGagnante();
                     break;
                 }
                 case 5:
                 {
                     system("cls");
-                    hackathon.ajouterEquipeGagnante();
-                    hackathon.afficherEquipeGagnante();
+                    int nciJuge;
+                    cout << "Entrez le numéro de carte identité du juge à rechercher : ";
+                    cin >> nciJuge;
+                    Juge* jugeTrouve = hackathon.rechercherJuge(nciJuge);
+                    if (jugeTrouve != nullptr)
+                    {
+                        cout << "Juge trouvé : " << *jugeTrouve << endl;
+                    }
+                    else
+                    {
+                        cout << "Membre de jury non trouvé." << endl;
+                    }
                     break;
                 }
                 case 6:
+                {
+                    system("cls");
+                    int nciJuge;
+                    cout << "Entrez le numéro de carte identité du juge à supprimer : ";
+                    cin >> nciJuge;
+                    hackathon.supprimerJuge(nciJuge);
+                    cout << "Membre de jury supprimé avec succès." << endl;
+                    break;
+                }
+                case 7:
+                {
+                    system("cls");
+                    int nciOrg;
+                    cout << "Entrez le numéro de carte identité de l'organisateur à rechercher : ";
+                    cin >> nciOrg;
+                    Organisateur* orgTrouve = hackathon.rechercherOrganisateur(nciOrg);
+                    if (orgTrouve != nullptr)
+                    {
+                        cout << "Organisateur trouvé : " << *orgTrouve << endl;
+                    }
+                    else
+                    {
+                        cout << "Organisateur non trouvé." << endl;
+                    }
+                    break;
+                }
+                case 8:
+                {
+                    system("cls");
+                    int nciOrg;
+                    cout << "Entrez le numéro de carte identité de l'organisateur à supprimer : ";
+                    cin >> nciOrg;
+                    hackathon.supprimerOrganisateur(nciOrg);
+                    cout << "Organisateur supprimé avec succès." << endl;
+                    break;
+                }
+                case 9:
+                {
+                    system("cls");
+                    ProjetEmbarque* projetEmbarqueAvecPlusDeMateriels = hackathon.getProjetEmbarqueAvecPlusDeMateriels();
+                    if (projetEmbarqueAvecPlusDeMateriels != nullptr)
+                    {
+                        cout << "Projet embarqué avec le plus de matériels :" << endl;
+                        cout << *projetEmbarqueAvecPlusDeMateriels << endl;
+                    }
+                    else
+                    {
+                        cout << "Aucun projet embarqué trouvé." << endl;
+                    }
+                    break;
+                }
+                case 10:
+                {
+                    system("cls");
+                    ProjetWeb* projetWebAvecPlusDeTechnologies = hackathon.getProjetWebAvecPlusDeTechnologies();
+                    if (projetWebAvecPlusDeTechnologies != nullptr)
+                    {
+                        cout << "Projet web avec le plus de technologies :" << endl;
+                        cout << *projetWebAvecPlusDeTechnologies << endl;
+                    }
+                    else
+                    {
+                        cout << "Aucun projet web trouvé." << endl;
+                    }
+                    break;
+                }
+                case 11:
                 {
                     system("cls");
                     break;
@@ -295,7 +407,7 @@ int main()
                 }
                 }
             }
-            while (choixHackathon != 6);
+            while (choixHackathon != 11);
             break;
         }
         case 2:
@@ -310,45 +422,12 @@ int main()
             string titre;
             string nomFichier;
             cout << "Donner le titre du Hackathon à afficher: ";
-            cin >> titre;
+            getline(cin, titre);
             nomFichier = "fichier/" + titre + ".txt";
             Hackathon::afficherHackathonsDeFichier(nomFichier);
             break;
         }
         case 4:
-        {
-            system("cls");
-            string titre;
-            cout << "Donner le titre du hackathon à afficher dans la map des hackathons : ";
-            cin >> titre;
-            if (hackathons.find(titre) != hackathons.end())
-            {
-                cout << hackathons[titre];
-            }
-            else
-            {
-                cout << "Hackathon non trouvé !" << endl;
-            }
-            break;
-        }
-        case 5:
-        {
-            system("cls");
-            string titre;
-            cout << "Donner le titre du hackathon à supprimer : ";
-            cin >> titre;
-            if (hackathons.find(titre) != hackathons.end())
-            {
-                hackathons.erase(titre);
-                cout << "Hackathon supprimé avec succès !" << endl;
-            }
-            else
-            {
-                cout << "Hackathon non trouvé !" << endl;
-            }
-            break;
-        }
-        case 6:
         {
             system("cls");
             //cin >> equipe;
@@ -383,6 +462,44 @@ int main()
                 case 4:
                 {
                     system("cls");
+                    Participant* participantAvecPlusDeCompetences = equipe.participantAvecPlusDeCompetences();
+                    if (participantAvecPlusDeCompetences != nullptr)
+                    {
+                        cout << "Participant avec le plus de compétences :" << endl;
+                        cout << *participantAvecPlusDeCompetences << endl;
+                    }
+                    else
+                    {
+                        cout << "Aucun participant trouvé." << endl;
+                    }
+                    break;
+                }
+                case 5:
+                {
+                    system("cls");
+                    equipe.trierParticipantsParNom();
+                    cout << "Participants triés par nom :" << endl;
+                    equipe.afficherParticipants();
+                    break;
+                }
+                case 6:
+                {
+                    system("cls");
+                    equipe.trierParticipantsParNci();
+                    cout << "Participants triés par NCI :" << endl;
+                    equipe.afficherParticipants();
+                    break;
+                }
+                case 7:
+                {
+                    system("cls");
+                    cout << "Tous les participants de l'équipe :" << endl;
+                    equipe.afficherParticipants();
+                    break;
+                }
+                case 8:
+                {
+                    system("cls");
                     break;
                 }
                 default:
@@ -393,24 +510,36 @@ int main()
                 }
                 }
             }
-            while (choixEquipe != 4);
+            while (choixEquipe != 8);
             break;
         }
-        case 7:
+        case 5:
         {
             system("cls");
             Equipe::afficherEquipesDeFichier("fichier/Equipes.txt");
             break;
         }
-        case 8:
+        case 6:
         {
             system("cls");
             string nomEquipe;
             string nomFichier;
             cout << "Donner le nom de l'equipe à afficher: ";
-            cin >> nomEquipe;
+            getline(cin, nomEquipe);
             nomFichier = "fichier/" + nomEquipe + ".txt";
             Equipe::afficherEquipesDeFichier(nomFichier);
+            break;
+        }
+        case 7 :
+        {
+            system("cls");
+            cout << "Le nombre total de participants dans tous les hackathons est: " << Participant::getNombreParticipants() << endl;
+            break;
+        }
+        case 8 :
+        {
+            system("cls");
+            cout << "Le nombre total de projets dans tous les hackathons est: " << Projet::getNombreProjets() << endl;
             break;
         }
         case 9:

@@ -23,6 +23,7 @@ public:
     string getEmail();
     void setEmail(string);
     virtual void afficherDetails()=0;
+
 };
 
 #endif

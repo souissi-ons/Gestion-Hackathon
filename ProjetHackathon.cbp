@@ -48,6 +48,7 @@
 		<Unit filename="include/Projet.h" />
 		<Unit filename="include/ProjetEmbarque.h" />
 		<Unit filename="include/ProjetWeb.h" />
+		<Unit filename="include/Specialisation.h" />
 		<Unit filename="include/Technologie.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Competence.cpp" />
@@ -64,6 +65,7 @@
 		<Unit filename="src/Projet.cpp" />
 		<Unit filename="src/ProjetEmbarque.cpp" />
 		<Unit filename="src/ProjetWeb.cpp" />
+		<Unit filename="src/Specialisation.cpp" />
 		<Unit filename="src/Technologie.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

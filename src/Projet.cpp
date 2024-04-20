@@ -5,11 +5,15 @@
 #include "Evaluation.h";
 using namespace std;
 
+int Projet::nombreProjets = 0;
 
-Projet::Projet() {};
+Projet::Projet() {
+    Projet::nombreProjets++;
+};
 
 Projet::Projet(string titre, string description)
 {
+    Projet::nombreProjets;
     this->titre = titre;
     this->description = description;
 };
@@ -21,6 +25,7 @@ Projet::~Projet() {
 
 Projet::Projet(const Projet& p)
 {
+    Projet::nombreProjets;
     this->titre = p.titre;
     this->description = p.description;
     this->evaluation = p.evaluation;
@@ -65,6 +70,16 @@ void Projet::setEquipe(Equipe* equipe)
 Equipe* Projet::getEquipe()
 {
     return this->equipe;
+};
+
+int Projet::getNombreProjets()
+{
+    return Projet::nombreProjets;
+};
+
+void Projet::setNombreProjets(int nb)
+{
+    Projet::nombreProjets = nb;
 };
 
 void Projet::afficherDetails(){

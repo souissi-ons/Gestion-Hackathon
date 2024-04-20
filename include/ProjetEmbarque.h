@@ -4,10 +4,11 @@
 #include "Projet.h";
 #include "Materiel.h";
 
- class ProjetEmbarque : public Projet{
- private:
-      list <Materiel *> materiels;
- public:
+class ProjetEmbarque : public Projet
+{
+private:
+    list <Materiel *> materiels;
+public:
     ProjetEmbarque();
     ProjetEmbarque(const ProjetEmbarque&);
     ~ProjetEmbarque()override;
@@ -19,9 +20,13 @@
     friend ostream& operator << (ostream&, ProjetEmbarque&);
     friend istream& operator >> (istream&, ProjetEmbarque&);
     ProjetEmbarque& operator=(const ProjetEmbarque&);
+    bool operator>(ProjetEmbarque&);
+    bool operator<(ProjetEmbarque&);
+    bool operator>=(ProjetEmbarque&);
+    bool operator<=(ProjetEmbarque&);
     void afficherDetails()override;
 
- };
+};
 
 #endif
 

@@ -8,6 +8,8 @@
 #include <iterator>
 #include "Gagnant.h";
 #include "Projet.h";
+#include "ProjetWeb.h";
+#include "ProjetEmbarque.h";
 #include "Date.h";
 #include "Organisateur.h";
 #include "Juge.h";
@@ -46,6 +48,8 @@ public:
     vector <Projet*> getProjets();
     list <Juge*> getJuges();
     list <Organisateur*> getOrganisateurs();
+    vector<ProjetEmbarque*> getProjetsEmbarques();
+    vector<ProjetWeb*> getProjetsWeb();
     void ajouterOrganisateur(Organisateur*);
     Organisateur* rechercherOrganisateur(int);
     void supprimerOrganisateur(int);
@@ -70,6 +74,8 @@ public:
     void creerFichierHackathon();
     void ajouterEquipeGagnante();
     void afficherEquipeGagnante();
+    ProjetEmbarque* getProjetEmbarqueAvecPlusDeMateriels();
+    ProjetWeb* getProjetWebAvecPlusDeTechnologies();
 };
 #endif
 

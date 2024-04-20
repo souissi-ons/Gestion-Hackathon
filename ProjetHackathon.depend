@@ -11,21 +11,21 @@
 	<string>
 	"Personne.h"
 
-1713468500 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\participant.cpp
+1713635919 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\participant.cpp
 	<string>
-	<vector>
+	<map>
 	<iostream>
 	<fstream>
 	<sstream>
 	"Participant.h"
 	<limits>
 
-1713468520 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\participant.h
-	<vector>
+1713636255 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\participant.h
+	<map>
 	"Personne.h"
 	"Competence.h"
 
-1713470304 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\main.cpp
+1713636675 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\main.cpp
 	<string>
 	<vector>
 	<iostream>
@@ -38,8 +38,9 @@
 	"Date.h"
 	"Organisateur.h"
 	"Juge.h"
+	"Specialisation.h"
 
-1713364269 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\personne.h
+1713635402 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\personne.h
 	<string>
 
 1713364799 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\personne.cpp
@@ -58,24 +59,26 @@
 	"Competence.h"
 	<limits>
 
-1713362066 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\juge.cpp
+1713633358 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\juge.cpp
 	<string>
 	<iostream>
 	"Juge.h"
 	<limits>
 
-1713361558 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\juge.h
+1713636912 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\juge.h
 	<string>
+	<vector>
 	"Personne.h"
+	"Specialisation.h"
 
-1713464112 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\projet.cpp
+1713635881 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\projet.cpp
 	<string>
 	<iostream>
 	"Projet.h"
 	<limits>
 	"Evaluation.h"
 
-1713364541 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\projet.h
+1713635966 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\projet.h
 	<string>
 	"Projet.h"
 	"Evaluation.h"
@@ -88,7 +91,7 @@
 	<iostream>
 	<chrono>
 
-1713469383 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\equipe.cpp
+1713636129 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\equipe.cpp
 	<string>
 	<vector>
 	<iostream>
@@ -96,8 +99,9 @@
 	"Equipe.h"
 	"Projet.h"
 	<limits>
+	<algorithm>
 
-1713468626 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\equipe.h
+1713634538 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\equipe.h
 	<string>
 	<vector>
 	"Equipe.h"
@@ -108,9 +112,9 @@
 	<iostream>
 	"Evaluation.h"
 
-1713317410 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\evaluation.h
+1713531104 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\evaluation.h
 
-1713397919 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\projetweb.h
+1713622022 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\projetweb.h
 	<list>
 	"Projet.h"
 	"Technologie.h"
@@ -133,7 +137,7 @@
 1713396092 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\materiel.h
 	<string>
 
-1713464247 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\projetweb.cpp
+1713635208 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\projetweb.cpp
 	<string>
 	<list>
 	<iostream>
@@ -141,7 +145,7 @@
 	"Projet.h"
 	"Technologie.h"
 
-1713397268 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\projetembarque.cpp
+1713635451 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\projetembarque.cpp
 	<string>
 	<list>
 	<iostream>
@@ -149,7 +153,7 @@
 	"Materiel.h"
 	"Projet.h"
 
-1713395747 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\projetembarque.h
+1713635051 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\projetembarque.h
 	<list>
 	"Projet.h"
 	"Materiel.h"
@@ -167,7 +171,7 @@
 	"ProjetWeb.h"
 	<limits>
 
-1713468449 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\hackathon.cpp
+1713636269 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\hackathon.cpp
 	<string>
 	<vector>
 	<iostream>
@@ -181,7 +185,7 @@
 	<algorithm>
 	<fstream>
 
-1713467090 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\hackathon.h
+1713624309 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\hackathon.h
 	<string>
 	<vector>
 	<list>
@@ -189,8 +193,18 @@
 	<iterator>
 	"Gagnant.h"
 	"Projet.h"
+	"ProjetWeb.h"
+	"ProjetEmbarque.h"
 	"Date.h"
 	"Organisateur.h"
 	"Juge.h"
 	"Date.h"
+
+1713631956 c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\include\specialisation.h
+	<string>
+
+1713631979 source:c:\users\souis\onedrive\documents\s2\programmation orientée objet\projet\projethackathon\src\specialisation.cpp
+	"Specialisation.h"
+	<iostream>
+	<limits>
 

@@ -5,7 +5,10 @@
 #include "Equipe.h";
 #include "Projet.h";
 #include <limits>
+#include <algorithm>
+
 using namespace std;
+
 
 Equipe::Equipe() {};
 
@@ -17,8 +20,7 @@ Equipe::Equipe(const Equipe& e)
     for (int i=0; i<e.participants.size(); i++)
     {
         p=new Participant(*e.participants[i]);
-        this->participants.push_back(p);
-    }
+        this->participants.push_back(p);    }
 };
 
 Equipe::~Equipe()
@@ -59,6 +61,7 @@ void Equipe::setParticipants(vector<Participant*> participants)
     this->participants = participants;
 };
 
+
 void Equipe::ajouterParticipant(Participant* participant)
 {
     this->participants.push_back(participant);
@@ -83,6 +86,8 @@ void Equipe::supprimerParticipant(int nci)
     {
         this->participants.erase(participants.begin() + p);
     }
+    int nb = (Participant::getNombreParticipants()) -1;
+    Participant::setNombreParticipants(nb);
 };
 
 ostream& operator<<(ostream& out, Equipe& e)
@@ -91,7 +96,8 @@ ostream& operator<<(ostream& out, Equipe& e)
     out << "Participants de l'equipe: " << endl;
     for (int i = 0; i < e.participants.size(); ++i)
     {
-        out << "Participant " << i+1 << ": " << *(e.participants[i]);
+        out << "Participant " << i+1 << ": " << endl;
+        out << *(e.participants[i]);
     }
     return out;
 }
@@ -102,12 +108,12 @@ istream& operator>>(istream& in, Equipe& e)
     getline(in, e.nom);
     in.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << "Entrez la date de création de l'équipe : ";
-    in >> e.dateCreation; // Utilisation de l'opérateur >> de Date
+    in >> e.dateCreation;
     int continuer;
     do
     {
         Participant* p = new Participant();
-        in >> *p; // Utilisation de l'opérateur >> de Participant
+        in >> *p;
         e.participants.push_back(p);
         cout << "Veuillez saisir 1 si vous voulez ajouter un autre participant sinon 0: ";
         in >> continuer;
@@ -238,5 +244,46 @@ void Equipe::afficherEquipesDeFichier(const string& nomFichier)
     catch (const exception& e)
     {
         cerr << "Erreur : " << e.what() << endl;
+    }
+};
+
+Participant* Equipe::participantAvecPlusDeCompetences()
+{
+    if (participants.empty())
+    {
+        return nullptr;
+    }
+    sort(participants.begin(), participants.end(), [](Participant* a, Participant* b)
+    {
+        return *a > *b;
+    });
+    return participants[0];
+};
+
+void Equipe::trierParticipantsParNom()
+{
+    sort(participants.begin(), participants.end(), [](Participant* a, Participant* b) {
+        return a->getNom() < b->getNom();
+    });
+};
+
+void Equipe::trierParticipantsParNci()
+{
+    sort(participants.begin(), participants.end(), [](Participant* a, Participant* b) {
+        return a->getNci() < b->getNci();
+    });
+};
+
+void Equipe::afficherParticipants()
+{
+    if (participants.empty())
+    {
+        cout << "Aucun participant dans cette équipe." << endl;
+        return;
+    }
+    cout << "Liste des participants de l'équipe :" << endl;
+    for (const auto& participant : participants)
+    {
+        cout << *participant << endl;
     }
 };

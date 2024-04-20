@@ -146,7 +146,7 @@ vector<ProjetEmbarque*> Hackathon::getProjetsEmbarques()
         }
     }
     return projetsEmbarques;
-};
+}
 
 vector<ProjetWeb*> Hackathon::getProjetsWeb()
 {
@@ -159,7 +159,8 @@ vector<ProjetWeb*> Hackathon::getProjetsWeb()
         }
     }
     return projetsWeb;
-};
+}
+
 
 void Hackathon::ajouterOrganisateur(Organisateur* organisateur)
 {
@@ -241,8 +242,6 @@ void Hackathon::supprimerProjet(string titreProjet)
     {
         this->projets.erase(projets.begin() + p);
     }
-    int nb = (Projet::getNombreProjets())-1;
-    Projet::setNombreProjets(nb);
 };
 
 void Hackathon::ajouterGagnant(Gagnant* gagnant)
@@ -320,13 +319,11 @@ ostream& operator<<(ostream& out, Hackathon& h)
     }
     out << endl;
     out << "Jury du hackathon:" << endl;
-    out << endl;
     i=0;
     for (const auto& juge : h.juges)
     {
         i++;
-        out << "Membre du jury " << i << ": " << endl;
-        out << *juge << endl;
+        out << "Membre du jury " << i << ": " << *juge ;
 
     }
     out << endl;
@@ -739,13 +736,13 @@ istream& operator>>(istream& in, Hackathon* h)
         if (choix == 1)
         {
             ProjetWeb* projetWeb = new ProjetWeb();
-            in >> *projetWeb;
+            in >> *projetWeb; // Utilisation de l'opérateur >> de ProjetWeb* pour saisir les détails
             h->projets.push_back(projetWeb);
         }
         else if (choix == 2)
         {
             ProjetEmbarque* projetEmbarque = new ProjetEmbarque();
-            in >> *projetEmbarque;
+            in >> *projetEmbarque; // Utilisation de l'opérateur >> de ProjetEmbarque* pour saisir les détails
             h->projets.push_back(projetEmbarque);
         }
         else
@@ -773,35 +770,6 @@ istream& operator>>(istream& in, Hackathon* h)
     in.ignore();
     h->remplirGagnants(premierePlace, deuxiemePlace, troisiemePlace);
     return in;
-};
-
-ProjetEmbarque* Hackathon::getProjetEmbarqueAvecPlusDeMateriels()
-{
-    vector<ProjetEmbarque*> projetsEmbarques = getProjetsEmbarques();
-    if (projetsEmbarques.empty())
-    {
-        return nullptr;
-    }
-    sort(projetsEmbarques.begin(), projetsEmbarques.end(), [](ProjetEmbarque* a, ProjetEmbarque* b)
-    {
-        return *a > *b;
-    });
-    return projetsEmbarques[0];
-
-};
-
-ProjetWeb* Hackathon::getProjetWebAvecPlusDeTechnologies()
-{
-    vector<ProjetWeb*> projetsWeb = getProjetsWeb();
-    if (projetsWeb.empty())
-    {
-        return nullptr;
-    }
-    sort(projetsWeb.begin(), projetsWeb.end(), [](ProjetWeb* a, ProjetWeb* b)
-    {
-        return *a > *b;
-    });
-    return projetsWeb[0];
 };
 
 

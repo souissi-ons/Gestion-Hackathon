@@ -10,6 +10,7 @@ using namespace std;
 class Projet
 {
 protected:
+    static int nombreProjets;
     string titre;
     string description;
     Evaluation *evaluation;
@@ -19,17 +20,16 @@ public:
     Projet(string, string);
     Projet(const Projet&);
     virtual ~Projet();
-    /*friend ostream& operator << (ostream&, Projet&);
-    friend istream& operator >> (istream&, Projet&);*/
     string getTitre();
     void setTitre(string);
     string getDescription();
     void setDescription(string);
     void setEvaluation(Evaluation*);
     void setEquipe(Equipe*);
+    static int getNombreProjets();
+    static void setNombreProjets(int);
     Equipe* getEquipe();
     Evaluation* getEvaluation();
-    //Projet& operator=(const Projet&);
     virtual void afficherDetails() = 0;
 };
 

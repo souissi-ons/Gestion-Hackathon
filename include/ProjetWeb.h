@@ -22,7 +22,10 @@ public:
     friend istream& operator >> (istream&, ProjetWeb&);
     ProjetWeb& operator=(const ProjetWeb&);
     void afficherDetails();
-
+    bool operator>(ProjetWeb&);
+    bool operator<(ProjetWeb&);
+    bool operator>=(ProjetWeb&);
+    bool operator<=(ProjetWeb&);
 };
 
 #endif

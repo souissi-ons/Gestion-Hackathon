@@ -3,12 +3,13 @@
 
 using namespace std;
 
- class Evaluation {
- private:
-      float noteOriginalite;
-      float noteFaisabilite;
-      float noteQualiteCode;
- public:
+class Evaluation
+{
+private:
+    float noteOriginalite;
+    float noteFaisabilite;
+    float noteQualiteCode;
+public:
     Evaluation();
     Evaluation(float, float, float);
     void setNoteOriginalite(float);
@@ -24,5 +25,5 @@ using namespace std;
     friend istream& operator >> (istream&, Evaluation*);
 };
 
- #endif
+#endif
 
