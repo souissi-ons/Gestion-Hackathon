@@ -26,10 +26,10 @@ public:
     void setDescription(string);
     void setEvaluation(Evaluation*);
     void setEquipe(Equipe*);
-    static int getNombreProjets();
-    static void setNombreProjets(int);
     Equipe* getEquipe();
     Evaluation* getEvaluation();
+    static int getNombreProjets();
+    static void setNombreProjets(int);
     virtual void afficherDetails() = 0;
 };
 

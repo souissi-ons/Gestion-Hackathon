@@ -17,7 +17,14 @@ Juge::Juge(const Juge& autreJuge)
     this->nom = autreJuge.nom;
     this->email = autreJuge.email;
     this->expertise = autreJuge.expertise;
-
+    for (list<string>::const_iterator it = autreJuge.numerosTelephone.begin(); it != autreJuge.numerosTelephone.end(); ++it)
+    {
+        this->numerosTelephone.push_back(*it);
+    }
+    for (list<string>::const_iterator it = autreJuge.adresses.begin(); it != autreJuge.adresses.end(); ++it)
+    {
+        this->adresses.push_back(*it);
+    }
     for (Specialisation* spec : autreJuge.specialisations)
     {
         this->specialisations.push_back(new Specialisation(*spec));
@@ -97,15 +104,17 @@ ostream& operator<<(ostream& out, Juge& juge)
 {
     out << "NCI: " << juge.getNci() << ", Nom: " << juge.getNom() << ", Email: " << juge.getEmail() << ", Expertise: " << juge.expertise << endl;
     out << "Specialisations du membre jury:" << endl;
-        out << "Numeros de telephone du membre jury: ";
+    out << "Numeros de telephone du membre jury: ";
     list<string>::iterator itNumeros;
-    for (itNumeros = juge.numerosTelephone.begin(); itNumeros != juge.numerosTelephone.end(); ++itNumeros) {
+    for (itNumeros = juge.numerosTelephone.begin(); itNumeros != juge.numerosTelephone.end(); ++itNumeros)
+    {
         out << *itNumeros << ", ";
     }
     out << endl;
     out << "Adresses du membre jury: ";
     list<string>::iterator itAdresses;
-    for (itAdresses = juge.adresses.begin(); itAdresses != juge.adresses.end(); ++itAdresses) {
+    for (itAdresses = juge.adresses.begin(); itAdresses != juge.adresses.end(); ++itAdresses)
+    {
         out << *itAdresses << ", ";
     }
     out << endl;
@@ -192,6 +201,14 @@ Juge& Juge::operator=(const Juge& autreJuge)
         this->nom = autreJuge.nom;
         this->email = autreJuge.email;
         this->expertise = autreJuge.expertise;
+        for (list<string>::const_iterator it = autreJuge.numerosTelephone.begin(); it != autreJuge.numerosTelephone.end(); ++it)
+        {
+            this->numerosTelephone.push_back(*it);
+        }
+        for (list<string>::const_iterator it = autreJuge.adresses.begin(); it != autreJuge.adresses.end(); ++it)
+        {
+            this->adresses.push_back(*it);
+        }
         for (Specialisation* spec : this->specialisations)
         {
             delete spec;
