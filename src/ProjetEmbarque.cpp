@@ -4,12 +4,17 @@
 #include "ProjetEmbarque.h";
 #include "Materiel.h";
 #include "Projet.h"
+
 using namespace std;
 
+// Constructeurs
+
+// Constructeur par défaut
 ProjetEmbarque::ProjetEmbarque() {
     Projet::nombreProjets ++;
 };
 
+// Constructeur par recopie
 ProjetEmbarque::ProjetEmbarque(const ProjetEmbarque& pe)
 {
     Projet::nombreProjets++;
@@ -23,6 +28,7 @@ ProjetEmbarque::ProjetEmbarque(const ProjetEmbarque& pe)
     }
 };
 
+// Desctructeur
 ProjetEmbarque::~ProjetEmbarque()
 {
     for (list<Materiel*>::const_iterator it = this->materiels.begin(); it != this->materiels.end(); ++it)
@@ -31,21 +37,27 @@ ProjetEmbarque::~ProjetEmbarque()
     }
 };
 
+// Méthodes pour accéder et modifier les membres privés
+
+// Méthode pour obtenir la liste des materiels
 list <Materiel *> ProjetEmbarque::getMateriels()
 {
     return this->materiels;
 };
 
+// Méthode pour modifier la liste des materiels
 void ProjetEmbarque::setMateriels(list <Materiel *>materiels)
 {
     this->materiels = materiels;
 };
 
+// Méthode pour ajouter un materiel dans la liste des materiels
 void ProjetEmbarque::ajouterMateriel(Materiel* materiel)
 {
     this->materiels.push_back(materiel);
 };
 
+// Méthode pour rechercher un materiel dans la liste des materiels par son nom
 Materiel* ProjetEmbarque::rechercherMateriel(string nomMateriel)
 {
     for (list<Materiel*>::const_iterator it = this->materiels.begin(); it != this->materiels.end(); ++it)
@@ -56,9 +68,9 @@ Materiel* ProjetEmbarque::rechercherMateriel(string nomMateriel)
         }
     }
     return nullptr;
-}
+};
 
-
+// Méthode pour supprimer un materiel dans la liste des materiels par son nom
 void ProjetEmbarque::supprimerMateriel(string nomMateriel)
 {
     Materiel* materiel = rechercherMateriel(nomMateriel);
@@ -69,6 +81,9 @@ void ProjetEmbarque::supprimerMateriel(string nomMateriel)
     }
 };
 
+// Surcharge des opérateurs pour l'entrée/sortie
+
+// Surcharge de l'opérateur << pour afficher les informations d'un projet embarqué
 ostream& operator<<(ostream& out, ProjetEmbarque& p)
 {
     out << "Projet embarqué : Titre du projet: " << p.titre << ", Description du projet: " << p.description << "\n" << "Evaluation du projet : " << p.evaluation << "Equipe du projet: " <<  p.equipe;
@@ -80,8 +95,9 @@ ostream& operator<<(ostream& out, ProjetEmbarque& p)
         out << "Materiel " << i << ": " << *it ;
     }
     return out;
-}
+};
 
+// Surcharge de l'opérateur >> pour saisir les informations d'un projet embarqué
 istream& operator>>(istream& in, ProjetEmbarque& p)
 {
     cout << "Entrez le titre du projet : ";
@@ -110,6 +126,7 @@ istream& operator>>(istream& in, ProjetEmbarque& p)
     return in;
 };
 
+// Méthode pour affecter un projet embarqué à un autre (opérateur d'affectation)
 ProjetEmbarque& ProjetEmbarque::operator=(const ProjetEmbarque& autreProjet)
 {
     this->titre = autreProjet.titre;
@@ -130,26 +147,33 @@ ProjetEmbarque& ProjetEmbarque::operator=(const ProjetEmbarque& autreProjet)
     return *this;
 };
 
+// Surcharge des opérateurs de comparaison
+
+// Surcharge de l'opérateur >
 bool ProjetEmbarque::operator>(ProjetEmbarque& autreProjet)
 {
     return this->materiels.size() > autreProjet.materiels.size();
 };
 
+// Surcharge de l'opérateur <
 bool ProjetEmbarque::operator<(ProjetEmbarque& autreProjet)
 {
     return this->materiels.size() < autreProjet.materiels.size();
 };
 
+// Surcharge de l'opérateur >=
 bool ProjetEmbarque::operator>=(ProjetEmbarque& autreProjet)
 {
     return this->materiels.size() >= autreProjet.materiels.size();
 };
 
+// Surcharge de l'opérateur <=
 bool ProjetEmbarque::operator<=(ProjetEmbarque& autreProjet)
 {
     return this->materiels.size() <= autreProjet.materiels.size();
 };
 
+// Méthode pour afficher les details d'un projet embarqué
 void ProjetEmbarque::afficherDetails()
 {
     cout << "Détails du projet embarqué" << endl;

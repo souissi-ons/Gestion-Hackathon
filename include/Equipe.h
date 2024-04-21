@@ -6,6 +6,7 @@
 #include "Equipe.h";
 #include "Participant.h";
 #include "Date.h";
+
 using namespace std;
 
 class Equipe

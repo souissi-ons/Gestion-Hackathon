@@ -4,13 +4,18 @@
 #include <limits>
 using namespace std;
 
+// Constructeurs
+
+// Constructeur par défaut
 Juge::Juge() {};
 
+// Constructeur avec paramètres
 Juge::Juge(int nci, string nom, string email, string expertise): Personne(nci, nom, email)
 {
     this->expertise = expertise;
 };
 
+// Constructeur par recopie
 Juge::Juge(const Juge& autreJuge)
 {
     this->nci = autreJuge.nci;
@@ -31,6 +36,7 @@ Juge::Juge(const Juge& autreJuge)
     }
 };
 
+// Desctructeur
 Juge::~Juge()
 {
     for (Specialisation* spec : specialisations)
@@ -39,31 +45,39 @@ Juge::~Juge()
     }
 }
 
+// Méthodes pour accéder et modifier les membres privés
+
+// Méthode pour obtenir l'expertise
 string Juge::getExpertise()
 {
     return this->expertise;
 };
 
+// Méthode pour modifier l'expertise
 void Juge::setExpertise(string expertise)
 {
     this->expertise = expertise;
 };
 
+// Méthode pour obtenir le vector de specialisations
 vector<Specialisation*> Juge::getSpecialisations()
 {
     return this->specialisations;
 };
 
+// Méthode pour modifier le vector de specialisations
 void Juge::setSpecialisations(vector<Specialisation*> specialisations)
 {
     this->specialisations = specialisations;
 };
 
+// Méthode pour ajouter une specialisation dans la vector des specialisations
 void Juge::ajouterSpecialisation(Specialisation* specialisation)
 {
     specialisations.push_back(specialisation);
 };
 
+// Méthode pour afficher les specialisations dans la vector des specialisations
 void Juge::afficherSpecialisations()
 {
     cout << "Specialisations du membre jury " << getNom() << ":" << endl;
@@ -73,6 +87,7 @@ void Juge::afficherSpecialisations()
     }
 };
 
+// Méthode pour rechercher une specialisation dans le vector des specialisations par son nom
 Specialisation* Juge::rechercherSpecialisationParNom(string nomSpec)
 {
     for (Specialisation* spec : specialisations)
@@ -83,8 +98,9 @@ Specialisation* Juge::rechercherSpecialisationParNom(string nomSpec)
         }
     }
     return nullptr;
-}
+};
 
+// Méthode pour supprimer une specialisation dans le vector des specialisations par son nom
 void Juge::supprimerSpecialisationParNom(string nomSpec)
 {
     for (size_t i = 0; i < specialisations.size(); ++i)
@@ -99,7 +115,9 @@ void Juge::supprimerSpecialisationParNom(string nomSpec)
     }
     cout << "Spécialisation non trouvée." << endl;
 };
+// Surcharge des opérateurs pour l'entrée/sortie
 
+// Surcharge de l'opérateur << pour afficher les informations d'un juge
 ostream& operator<<(ostream& out, Juge& juge)
 {
     out << "NCI: " << juge.getNci() << ", Nom: " << juge.getNom() << ", Email: " << juge.getEmail() << ", Expertise: " << juge.expertise << endl;
@@ -127,6 +145,7 @@ ostream& operator<<(ostream& out, Juge& juge)
     return out;
 };
 
+// Surcharge de l'opérateur >> pour saisir les informations d'un juge
 istream& operator>>(istream& in, Juge& juge)
 {
     cout << "Entrez le numéro de carte identité du membre jury : ";
@@ -192,7 +211,7 @@ istream& operator>>(istream& in, Juge& juge)
 
     return in;
 };
-
+// Méthode pour affecter un juge à une autre (opérateur d'affectation)
 Juge& Juge::operator=(const Juge& autreJuge)
 {
     if (this != &autreJuge)
@@ -222,6 +241,7 @@ Juge& Juge::operator=(const Juge& autreJuge)
     return *this;
 };
 
+// Méthode pour afficher les details d'un juge
 void Juge::afficherDetails()
 {
     cout << "Détails du membre jury :" << endl;

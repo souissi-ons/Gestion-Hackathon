@@ -5,15 +5,21 @@
 #include <sstream>;
 #include "Participant.h";
 #include <limits>
+
 using namespace std;
 
+// Initialisation du nombre de participants
 int Participant::nombreParticipants = 0;
 
+// Constructeurs
+
+// Constructeur par défaut
 Participant::Participant()
 {
     Participant::nombreParticipants++;
 };
 
+// Constructeur par recopie
 Participant::Participant(const Participant& p)
 {
     Participant::nombreParticipants++;
@@ -35,29 +41,36 @@ Participant::Participant(const Participant& p)
     }
 }
 
+// Desctructeur
 Participant::~Participant() {}
 
+// Méthodes pour accéder et modifier les membres privés
 
+// Méthode pour obtenir le map des participants
 map<string, string> Participant::getCompetences()
 {
     return this->competences;
 };
 
+// Méthode pour modifier le map des participants
 void Participant::setCompetences(map<string, string> competences)
 {
     this->competences = competences;
 };
 
+// Méthode pour obtenir le nombre de participants
 int Participant::getNombreParticipants()
 {
     return Participant::nombreParticipants;
 };
 
+// Méthode pour modifier le nombre de participants
 void Participant::setNombreParticipants(int nb)
 {
     Participant::nombreParticipants = nb;
 };
 
+// Méthode pour rechercher une compétence dans le map des compétences par son nom
 int Participant::rechercherCompetence(string nomCompetence)
 {
     map<string, string>::iterator it;
@@ -71,6 +84,7 @@ int Participant::rechercherCompetence(string nomCompetence)
     return -1;
 };
 
+// Méthode pour ajouter une compétence dans le map des compétences
 void Participant::ajouterCompetence(Competence& competence)
 {
     if (this->competences.find(competence.getNom()) == this->competences.end())
@@ -83,11 +97,15 @@ void Participant::ajouterCompetence(Competence& competence)
     }
 };
 
+// Méthode pour supprimer une compétence dans le map des compétences par son nom
 void Participant::supprimerCompetence(string nomCompetence)
 {
     this->competences.erase(nomCompetence);
 };
 
+// Surcharge des opérateurs pour l'entrée/sortie
+
+// Surcharge de l'opérateur << pour afficher les informations d'un participant
 ostream& operator<<(ostream& out, Participant& p)
 {
     out << "Cin du participant: " << p.getNci() << ", Nom du participant: " << p.getNom() << ", Email du participant: " << p.getEmail() << endl;
@@ -114,6 +132,7 @@ ostream& operator<<(ostream& out, Participant& p)
     return out;
 };
 
+// Surcharge de l'opérateur >> pour saisir les informations d'un participant
 istream& operator>>(istream& in, Participant& p)
 {
     cout << "Entrez le NCI du participant : ";
@@ -179,6 +198,7 @@ istream& operator>>(istream& in, Participant& p)
     return in;
 };
 
+// Méthode pour affecter un participant à une autre (opérateur d'affectation)
 Participant& Participant::operator=(Participant& autreParticipant)
 {
     this->nci = autreParticipant.nci;
@@ -199,8 +219,9 @@ Participant& Participant::operator=(Participant& autreParticipant)
         this->competences[it->first] = it->second;
     }
     return *this;
-}
+};
 
+// Méthode pour afficher les details d'un participant
 void Participant::afficherDetails()
 {
     cout << "Détails du participant :" << endl;
@@ -211,25 +232,31 @@ void Participant::afficherDetails()
     {
         cout << "Nom de la competence: " << it->first << ", Description de la competence: " << it->second << endl;
     }
-}
+};
 
+// Surcharge des opérateurs de comparaison
+
+// Surcharge de l'opérateur <
 bool Participant::operator<(Participant& autreParticipant)
 {
     return this->competences.size() < autreParticipant.competences.size();
-}
+};
 
+// Surcharge de l'opérateur >
 bool Participant::operator>(Participant& autreParticipant)
 {
     return this->competences.size() > autreParticipant.competences.size();
-}
+};
 
+// Surcharge de l'opérateur <=
 bool Participant::operator<=(Participant& autreParticipant)
 {
     return this->competences.size() <= autreParticipant.competences.size();
-}
+};
 
+// Surcharge de l'opérateur >=
 bool Participant::operator>=(Participant& autreParticipant)
 {
     return this->competences.size() >= autreParticipant.competences.size();
-}
+};
 

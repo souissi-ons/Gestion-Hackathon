@@ -2,6 +2,7 @@
 #define COMPETENCE_H
 
 #include <string>;
+
 using namespace std;
 
 class Competence{

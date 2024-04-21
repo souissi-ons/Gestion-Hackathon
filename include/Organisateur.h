@@ -3,6 +3,7 @@
 
 #include <string>;
 #include "Personne.h";
+
 using namespace std;
 
  class Organisateur : public Personne{

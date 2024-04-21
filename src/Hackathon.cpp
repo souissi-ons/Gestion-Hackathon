@@ -13,8 +13,12 @@
 
 using namespace std;
 
+// Constructeurs
+
+// Constructeur par défaut
 Hackathon::Hackathon() {};
 
+// Constructeur par recopie
 Hackathon::Hackathon(const Hackathon& h)
 {
     this->titre = h.titre;
@@ -45,6 +49,7 @@ Hackathon::Hackathon(const Hackathon& h)
     }
 };
 
+// Desctructeur
 Hackathon::~Hackathon()
 {
     for (int i=0; i<this->projets.size(); i++)
@@ -65,76 +70,93 @@ Hackathon::~Hackathon()
     }
 };
 
+// Méthodes pour accéder et modifier les membres privés
+
+// Méthode pour obtenir le titre
 string Hackathon::getTitre()
 {
     return (this->titre);
 };
 
+// Méthode pour modifier le titre
 void Hackathon::setTitre(string titre)
 {
     this->titre = titre;
 };
 
+// Méthode pour obtenir la description
 string Hackathon::getDescription()
 {
     return (this->description);
 };
 
+// Méthode pour modifier la description
 void Hackathon::setDescription(string description)
 {
     this->description = description;
 };
 
+// Méthode pour obtenir la date de début
 Date Hackathon::getDateDeDebut()
 {
     return (this->dateDeDebut);
 };
 
+// Méthode pour modifier la date de début
 void Hackathon::setDateDeDebut(Date dateDeDebut)
 {
     this->dateDeDebut = dateDeDebut;
 };
 
+// Méthode pour obtenir la date de fin
 Date Hackathon::getDateDeFin()
 {
     return (this->dateDeFin);
 };
 
+// Méthode pour modifier la date de fin
 void Hackathon::setDateDeFin(Date dateDeFin)
 {
     this->dateDeFin = dateDeFin;
 };
 
+// Méthode pour obtenir le thème
 string Hackathon::getTheme()
 {
     return (this->theme);
 };
 
+// Méthode pour modifier le thème
 void Hackathon::setTheme(string theme)
 {
     this->theme = theme;
 };
 
+// Méthode pour obtenir le vector de gagnants
 vector <Gagnant*> Hackathon::getGagnants()
 {
     return this->gagnants;
 };
 
+// Méthode pour obtenir le vector de projets
 vector <Projet*> Hackathon::getProjets()
 {
     return this->projets;
 };
 
+// Méthode pour obtenir la liste de juges
 list <Juge*> Hackathon::getJuges()
 {
     return this->juges;
 };
 
+// Méthode pour obtenir la liste d'organisateurs
 list <Organisateur*> Hackathon::getOrganisateurs()
 {
     return this->organisateurs;
 };
 
+// Méthode pour obtenir le vector de projets embarqué
 vector<ProjetEmbarque*> Hackathon::getProjetsEmbarques()
 {
     vector<ProjetEmbarque*> projetsEmbarques;
@@ -148,6 +170,7 @@ vector<ProjetEmbarque*> Hackathon::getProjetsEmbarques()
     return projetsEmbarques;
 };
 
+// Méthode pour obtenir le vector de projets web
 vector<ProjetWeb*> Hackathon::getProjetsWeb()
 {
     vector<ProjetWeb*> projetsWeb;
@@ -161,11 +184,13 @@ vector<ProjetWeb*> Hackathon::getProjetsWeb()
     return projetsWeb;
 };
 
+// Méthode pour ajouter un organisateur dans la liste des organisateurs
 void Hackathon::ajouterOrganisateur(Organisateur* organisateur)
 {
     this->organisateurs.push_back(organisateur);
 };
 
+// Méthode pour rechercher un organisateur dans la liste des organisateurs par son numéro de carte d'identité nationale (NCI)
 Organisateur* Hackathon::rechercherOrganisateur(int nciOrganisateur)
 {
     for (list<Organisateur*>::const_iterator it = this->organisateurs.begin(); it != this->organisateurs.end(); ++it)
@@ -178,6 +203,7 @@ Organisateur* Hackathon::rechercherOrganisateur(int nciOrganisateur)
     return nullptr;
 };
 
+// Méthode pour supprimer un organisateur dans la liste des organisateurs par son numéro de carte d'identité nationale (NCI)
 void Hackathon::supprimerOrganisateur(int nciOrganisateur)
 {
     Organisateur* organisateur = rechercherOrganisateur(nciOrganisateur);
@@ -189,11 +215,13 @@ void Hackathon::supprimerOrganisateur(int nciOrganisateur)
     }
 };
 
+// Méthode pour ajouter un juge dans la liste des juges
 void Hackathon::ajouterJuge(Juge* juge)
 {
     this->juges.push_back(juge);
 };
 
+// Méthode pour rechercher un juge dans la liste des juges par son numéro de carte d'identité nationale (NCI)
 Juge* Hackathon::rechercherJuge(int nciJuge)
 {
     for (list<Juge*>::const_iterator it = this->juges.begin(); it != this->juges.end(); ++it)
@@ -206,6 +234,7 @@ Juge* Hackathon::rechercherJuge(int nciJuge)
     return nullptr;
 };
 
+// Méthode pour supprimer un juge dans la liste des juges par son numéro de carte d'identité nationale (NCI)
 void Hackathon::supprimerJuge(int nciJuge)
 {
     Juge* juge = rechercherJuge(nciJuge);
@@ -217,11 +246,13 @@ void Hackathon::supprimerJuge(int nciJuge)
     }
 };
 
+// Méthode pour ajouter projet dans le vector des projets
 void Hackathon::ajouterProjet(Projet* projet)
 {
     this->projets.push_back(projet);
 };
 
+// Méthode pour rechercher un projet dans le vector des projets par son titre
 int Hackathon::rechercherProjet(string titreProjet)
 {
     for (int i=0; i<this->projets.size(); i++)
@@ -234,6 +265,7 @@ int Hackathon::rechercherProjet(string titreProjet)
     return -1;
 };
 
+// Méthode pour supprimer un projet dans le vector des projets par son titre
 void Hackathon::supprimerProjet(string titreProjet)
 {
     int p = rechercherProjet(titreProjet);
@@ -245,11 +277,13 @@ void Hackathon::supprimerProjet(string titreProjet)
     Projet::setNombreProjets(nb);
 };
 
+// Méthode pour ajouter un gagnant dans le vector des gagnants
 void Hackathon::ajouterGagnant(Gagnant* gagnant)
 {
     this->gagnants.push_back(gagnant);
 };
 
+// Méthode pour rechercher un gagnant dans le vector des gagnants par le nom de l'équipe
 int Hackathon::rechercherGagnant(string nomEquipeGagnante)
 {
     for (int i=0; i<this->gagnants.size(); i++)
@@ -262,25 +296,26 @@ int Hackathon::rechercherGagnant(string nomEquipeGagnante)
     return -1;
 };
 
+// Méthode pour remplir la liste des gagnants du hackathon en attribuant des récompenses aux trois meilleurs projets évalués.
 void Hackathon::remplirGagnants(string recompense1, string recompense2, string recompense3)
 {
+    // Vérifier s'il y a des projets inscrits
     if (projets.empty())
     {
         cout << "Aucun projet inscrit au this->" << endl;
         return;
     }
-
     // Trier les projets par moyenne décroissante
     sort(projets.begin(), projets.end(), [](Projet* a, Projet* b)
     {
         return a->getEvaluation()->calculerMoyenne() > b->getEvaluation()->calculerMoyenne();
     });
-
     // Créer les trois premiers gagnants s'il y a au moins trois projets
     for (int i = 0; i < min(3, static_cast<int>(projets.size())); ++i)
     {
         float moyenne = projets[i]->getEvaluation()->calculerMoyenne();
         string recompense = "";
+        // Déterminer la récompense en fonction du classement
         if (i == 0)
         {
             recompense = recompense1;
@@ -293,17 +328,18 @@ void Hackathon::remplirGagnants(string recompense1, string recompense2, string r
         {
             recompense = recompense3;
         }
-
         // Trouver le projet actuel
         Projet* projetActuel = projets[i];
-
         // Créer le gagnant avec le projet actuel
         Gagnant* gagnant = new Gagnant(i + 1, recompense, moyenne);
         gagnant->setProjet(projetActuel);
-        gagnants.push_back(gagnant);
+        gagnants.push_back(gagnant); // Ajouter le gagnant à le vector des gagnants
     }
-}
+};
 
+// Surcharge des opérateurs pour l'entrée/sortie
+
+// Surcharge de l'opérateur << pour afficher les informations d'un hackathon
 ostream& operator<<(ostream& out, Hackathon& h)
 {
     out << "Hackathon: " << endl;
@@ -362,6 +398,7 @@ ostream& operator<<(ostream& out, Hackathon& h)
     return out;
 };
 
+// Surcharge de l'opérateur >> pour saisir les informations d'un hackathon
 istream& operator>>(istream& in, Hackathon& h)
 {
     Date d;
@@ -458,172 +495,7 @@ istream& operator>>(istream& in, Hackathon& h)
     return in;
 };
 
-void Hackathon::creerFichierHackathon()
-{
-    if (this->titre.empty())
-    {
-        cerr << "Erreur : Le titre du hackathon est vide." << endl;
-        return;
-    }
-    string nomFichier = "fichier/" +this->titre + ".txt";
-    try
-    {
-        ofstream fichier(nomFichier);
-
-        if (!fichier.is_open())
-        {
-            throw runtime_error("Impossible d'ouvrir le fichier.");
-        }
-        fichier << *this;
-        fichier << endl;
-        fichier << endl;
-        fichier.close();
-        cout << "Fichier hackathon créé avec succès : " << nomFichier << endl;
-    }
-    catch (const exception& e)
-    {
-        cerr << "Erreur : " << e.what() << endl;
-    }
-};
-
-void Hackathon::ajouterHackathonDansFichier(const string& nomFichier)
-{
-    try
-    {
-        ofstream fichier(nomFichier, ios::app);
-        if (!fichier.is_open())
-        {
-            throw runtime_error("Impossible d'ouvrir le fichier.");
-        }
-        fichier << *this;
-        fichier << endl;
-        fichier << endl;
-        fichier.close();
-        cout << "Hackathon ajouté avec succès dans le fichier." << endl;
-    }
-    catch (const exception& e)
-    {
-        cerr << "Erreur : " << e.what() << endl;
-    }
-};
-
-void Hackathon::afficherHackathonsDeFichier(const string& nomFichier)
-{
-    try
-    {
-        ifstream fichier(nomFichier);
-        if (!fichier.good())
-        {
-            cerr << "Erreur : Le fichier avec ce nom n'existe pas." << endl;
-            return;
-        }
-        if (!fichier.is_open())
-        {
-            throw runtime_error("Impossible d'ouvrir le fichier.");
-        }
-        string ligne;
-        while (!fichier.eof())
-        {
-            getline(fichier, ligne);
-            cout << ligne << endl;
-        }
-        fichier.close();
-    }
-    catch (const exception& e)
-    {
-        cerr << "Erreur : " << e.what() << endl;
-    }
-};
-
-void Hackathon::ajouterEquipeGagnante()
-{
-    for (Gagnant* gagnant : this->getGagnants())
-    {
-        int rangEquipe = gagnant->getRang();
-        string nomEquipe = gagnant->getProjet()->getEquipe()->getNom();
-        equipeGagnante[rangEquipe] = nomEquipe;
-    };
-};
-
-Hackathon& Hackathon::operator=(const Hackathon& other)
-{
-    this->titre = other.titre;
-    this->description = other.description;
-    this->dateDeDebut = other.dateDeDebut;
-    this->dateDeFin = other.dateDeFin;
-    this->theme = other.theme;
-
-    this->projets.clear();
-    this->gagnants.clear();
-    this->juges.clear();
-    this->organisateurs.clear();
-
-    for (Projet* projet : other.projets)
-    {
-        this->ajouterProjet(projet);
-    }
-
-    for (Gagnant* gagnant : other.gagnants)
-    {
-        this->ajouterGagnant(gagnant);
-    }
-
-    for (Juge* juge : other.juges)
-    {
-        this->ajouterJuge(juge);
-    }
-
-    for (Organisateur* organisateur : other.organisateurs)
-    {
-        this->ajouterOrganisateur(organisateur);
-    }
-    return *this;
-};
-
-Hackathon& Hackathon::operator=(const Hackathon* other)
-{
-    this->titre = other->titre;
-    this->description = other->description;
-    this->dateDeDebut = other->dateDeDebut;
-    this->dateDeFin = other->dateDeFin;
-    this->theme = other->theme;
-
-    this->projets.clear();
-    this->gagnants.clear();
-    this->juges.clear();
-    this->organisateurs.clear();
-
-    for (Projet* projet : other->projets)
-    {
-        this->ajouterProjet(projet);
-    }
-
-    for (Gagnant* gagnant : other->gagnants)
-    {
-        this->ajouterGagnant(gagnant);
-    }
-
-    for (Juge* juge : other->juges)
-    {
-        this->ajouterJuge(juge);
-    }
-
-    for (Organisateur* organisateur : other->organisateurs)
-    {
-        this->ajouterOrganisateur(organisateur);
-    }
-    return *this;
-};
-
-void Hackathon::afficherEquipeGagnante()
-{
-    cout << "Équipes gagnantes :" << endl;
-    for (auto& [rang, nomEquipe] : this->equipeGagnante)
-    {
-        cout << rang << " : " << nomEquipe << endl;
-    }
-};
-
+// Surcharge de l'opérateur << pour afficher les informations d'un hackathon*
 ostream& operator<<(ostream& out, Hackathon* h)
 {
     out << "Hackathon: " << endl;
@@ -679,6 +551,7 @@ ostream& operator<<(ostream& out, Hackathon* h)
     return out;
 };
 
+// Surcharge de l'opérateur >> pour saisir les informations d'un hackathon*
 istream& operator>>(istream& in, Hackathon* h)
 {
     Date d;
@@ -775,33 +648,213 @@ istream& operator>>(istream& in, Hackathon* h)
     return in;
 };
 
-ProjetEmbarque* Hackathon::getProjetEmbarqueAvecPlusDeMateriels()
+// Méthode pour affecter un hackathon à une autre (opérateur d'affectation)
+Hackathon& Hackathon::operator=(const Hackathon& other)
 {
-    vector<ProjetEmbarque*> projetsEmbarques = getProjetsEmbarques();
-    if (projetsEmbarques.empty())
-    {
-        return nullptr;
-    }
-    sort(projetsEmbarques.begin(), projetsEmbarques.end(), [](ProjetEmbarque* a, ProjetEmbarque* b)
-    {
-        return *a > *b;
-    });
-    return projetsEmbarques[0];
+    this->titre = other.titre;
+    this->description = other.description;
+    this->dateDeDebut = other.dateDeDebut;
+    this->dateDeFin = other.dateDeFin;
+    this->theme = other.theme;
 
+    this->projets.clear();
+    this->gagnants.clear();
+    this->juges.clear();
+    this->organisateurs.clear();
+
+    for (Projet* projet : other.projets)
+    {
+        this->ajouterProjet(projet);
+    }
+
+    for (Gagnant* gagnant : other.gagnants)
+    {
+        this->ajouterGagnant(gagnant);
+    }
+
+    for (Juge* juge : other.juges)
+    {
+        this->ajouterJuge(juge);
+    }
+
+    for (Organisateur* organisateur : other.organisateurs)
+    {
+        this->ajouterOrganisateur(organisateur);
+    }
+    return *this;
 };
 
+// Méthode pour affecter un hackathon* à un autre hackathon* (opérateur d'affectation)
+Hackathon& Hackathon::operator=(const Hackathon* other)
+{
+    this->titre = other->titre;
+    this->description = other->description;
+    this->dateDeDebut = other->dateDeDebut;
+    this->dateDeFin = other->dateDeFin;
+    this->theme = other->theme;
+
+    this->projets.clear();
+    this->gagnants.clear();
+    this->juges.clear();
+    this->organisateurs.clear();
+
+    for (Projet* projet : other->projets)
+    {
+        this->ajouterProjet(projet);
+    }
+
+    for (Gagnant* gagnant : other->gagnants)
+    {
+        this->ajouterGagnant(gagnant);
+    }
+
+    for (Juge* juge : other->juges)
+    {
+        this->ajouterJuge(juge);
+    }
+
+    for (Organisateur* organisateur : other->organisateurs)
+    {
+        this->ajouterOrganisateur(organisateur);
+    }
+    return *this;
+};
+
+// Méthode pour créer un fichier contenant les informations d'un hackathon
+void Hackathon::creerFichierHackathon()
+{
+    if (this->titre.empty()) // Vérifier si le titre du hackathon est vide
+    {
+        cerr << "Erreur : Le titre du hackathon est vide." << endl;
+        return;
+    }
+    string nomFichier = "fichier/" +this->titre + ".txt"; // Nom du fichier avec le titre du hackathon
+    try
+    {
+        ofstream fichier(nomFichier); // Créer un nouveau fichier
+
+        if (!fichier.is_open())
+        {
+            throw runtime_error("Impossible d'ouvrir le fichier.");
+        }
+        fichier << *this; // Écrire les informations du hackathon dans le fichier
+        fichier << endl;
+        fichier << endl;
+        fichier.close(); // Fermer le fichier après écriture
+        cout << "Fichier hackathon créé avec succès : " << nomFichier << endl;
+    }
+    catch (const exception& e)
+    {
+        cerr << "Erreur : " << e.what() << endl; // Afficher un message d'erreur en cas d'échec
+    }
+};
+
+// Méthode pour ajouter les informations du hackathon dans un fichier
+void Hackathon::ajouterHackathonDansFichier(const string& nomFichier)
+{
+    try
+    {
+        ofstream fichier(nomFichier, ios::app); // Ouvrir le fichier en mode append (ajout) pour ne pas écraser le contenu existant
+        if (!fichier.is_open())
+        {
+            throw runtime_error("Impossible d'ouvrir le fichier.");
+        }
+        fichier << *this; // Écrire les informations du hackathon dans le fichier
+        fichier << endl;
+        fichier << endl;
+        fichier.close(); // Fermer le fichier après écriture
+        cout << "Hackathon ajouté avec succès dans le fichier." << endl;
+    }
+    catch (const exception& e)
+    {
+        cerr << "Erreur : " << e.what() << endl; // Afficher un message d'erreur en cas d'échec
+    }
+};
+
+// Méthode pour afficher le fichier contenant les informations du hackathon
+void Hackathon::afficherHackathonsDeFichier(const string& nomFichier)
+{
+    try
+    {
+        ifstream fichier(nomFichier); // Ouvrir le fichier en mode lecture
+        if (!fichier.good())
+        {
+            cerr << "Erreur : Le fichier avec ce nom n'existe pas." << endl;
+            return;
+        }
+        if (!fichier.is_open())
+        {
+            throw runtime_error("Impossible d'ouvrir le fichier.");
+        }
+        string ligne;
+        while (!fichier.eof())
+        {
+            getline(fichier, ligne); // Lire chaque ligne du fichier
+            cout << ligne << endl; // Afficher la ligne lue
+        }
+        fichier.close(); // Fermer le fichier après lecture
+    }
+    catch (const exception& e)
+    {
+        cerr << "Erreur : " << e.what() << endl;  // Afficher un message d'erreur en cas d'échec
+    }
+};
+
+// Méthode pour ajouter equipe gagnante dans le map
+void Hackathon::ajouterEquipeGagnante()
+{
+    for (Gagnant* gagnant : this->getGagnants())
+    {
+        int rangEquipe = gagnant->getRang();
+        string nomEquipe = gagnant->getProjet()->getEquipe()->getNom();
+        equipeGagnante[rangEquipe] = nomEquipe;
+    };
+};
+
+// Méthode pour afficher équipe gagnante dans le map
+void Hackathon::afficherEquipeGagnante()
+{
+    cout << "Équipes gagnantes :" << endl;
+    for (auto& [rang, nomEquipe] : this->equipeGagnante)
+    {
+        cout << rang << " : " << nomEquipe << endl;
+    }
+};
+
+// Méthode pour obtenir le projet embarqué avec plus de matériels dans le hackathon
+ProjetEmbarque* Hackathon::getProjetEmbarqueAvecPlusDeMateriels()
+{
+    // Récupérer la liste des projets embarqué du hackathon
+    vector<ProjetEmbarque*> projetsEmbarques = getProjetsEmbarques();
+    // Vérifier si la liste des projets embarqué est vide
+    if (projetsEmbarques.empty())
+    {
+        return nullptr; // Retourner nullptr si aucun projet embarqué n'est disponible
+    }
+    // Trier les projets embarqué par nombre de matériels décroissant
+    sort(projetsEmbarques.begin(), projetsEmbarques.end(), [](ProjetEmbarque* a, ProjetEmbarque* b)
+    {
+        return *a > *b; // Utiliser l'opérateur > défini pour les projets embarqués pour comparer le nombre de matériels
+    });
+    return projetsEmbarques[0]; // Retourner le projet embarqué avec le plus de matériels (le premier élément après le tri)
+};
+
+// Méthode pour obtenir le projet web avec plus de technologies dans le hackathon
 ProjetWeb* Hackathon::getProjetWebAvecPlusDeTechnologies()
 {
+    // Récupérer la liste des projets web du hackathon
     vector<ProjetWeb*> projetsWeb = getProjetsWeb();
+    // Vérifier si la liste des projets web est vide
     if (projetsWeb.empty())
     {
-        return nullptr;
+        return nullptr; // Retourner nullptr si aucun projet web n'est disponible
     }
+    // Trier les projets web par nombre de technologies décroissant
     sort(projetsWeb.begin(), projetsWeb.end(), [](ProjetWeb* a, ProjetWeb* b)
     {
-        return *a > *b;
+        return *a > *b; // Utiliser l'opérateur > défini pour les projets web pour comparer le nombre de technologies
     });
-    return projetsWeb[0];
+    return projetsWeb[0]; // Retourner le projet web avec le plus de technologies (le premier élément après le tri)
 };
 
 

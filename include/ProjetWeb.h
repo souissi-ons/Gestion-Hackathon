@@ -5,6 +5,8 @@
 #include "Projet.h";
 #include "Technologie.h"
 
+using namespace std;
+
 class ProjetWeb : public Projet
 {
 private:

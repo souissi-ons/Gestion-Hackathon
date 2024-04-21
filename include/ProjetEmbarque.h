@@ -4,6 +4,8 @@
 #include "Projet.h";
 #include "Materiel.h";
 
+using namespace std;
+
 class ProjetEmbarque : public Projet
 {
 private:

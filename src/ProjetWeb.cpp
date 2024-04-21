@@ -4,12 +4,17 @@
 #include "ProjetWeb.h";
 #include "Projet.h";
 #include "Technologie.h"
+
 using namespace std;
 
+// Constructeurs
+
+// Constructeur par défaut
 ProjetWeb::ProjetWeb() {
     Projet::nombreProjets ++;
 };
 
+// Constructeur par recopie
 ProjetWeb::ProjetWeb(const ProjetWeb& pw)
 {
     Projet::nombreProjets ++;
@@ -23,6 +28,7 @@ ProjetWeb::ProjetWeb(const ProjetWeb& pw)
     }
 };
 
+// Desctructeur
 ProjetWeb::~ProjetWeb()
 {
     for (list<Technologie*>::const_iterator it = this->technologies.begin(); it != this->technologies.end(); ++it)
@@ -31,11 +37,15 @@ ProjetWeb::~ProjetWeb()
     }
 };
 
+// Méthodes pour accéder et modifier les membres privés
+
+// Méthode pour obtenir la liste des technologies
 list <Technologie *> ProjetWeb::getTechnologies()
 {
     return this->technologies;
 };
 
+// Méthode pour modifier la liste des technologies
 void ProjetWeb::setTechnologies(list <Technologie *> technologies)
 {
     this->technologies = technologies;
@@ -46,6 +56,7 @@ void ProjetWeb::ajouterTechnologie(Technologie* technologie)
     this->technologies.push_back(technologie);
 };
 
+// Méthode pour rechercher une technologie dans la liste des technologies par son nom
 Technologie* ProjetWeb::rechercherTechnologie(string nomTechnologie)
 {
     for (list<Technologie*>::const_iterator it = this->technologies.begin(); it != this->technologies.end(); ++it)
@@ -58,6 +69,7 @@ Technologie* ProjetWeb::rechercherTechnologie(string nomTechnologie)
     return nullptr;
 };
 
+// Méthode pour supprimer une technologie dans la liste des technologies par son nom
 void ProjetWeb::supprimerTechnologie(string nomTechnologie)
 {
     Technologie* technologie = rechercherTechnologie(nomTechnologie);
@@ -67,7 +79,9 @@ void ProjetWeb::supprimerTechnologie(string nomTechnologie)
         delete technologie;
     }
 };
+// Surcharge des opérateurs pour l'entrée/sortie
 
+// Surcharge de l'opérateur >> pour saisir les informations d'un projet web
 istream& operator>>(istream& in, ProjetWeb& p)
 {
     cout << "Entrez le titre du projet : ";
@@ -97,6 +111,7 @@ istream& operator>>(istream& in, ProjetWeb& p)
     return in;
 }
 
+// Surcharge de l'opérateur << pour afficher les informations d'un projet web
 ostream& operator<<(ostream& out, ProjetWeb& p)
 {
     out << "Projet web : Titre du projet: " << p.titre << ", Description du projet: " << p.description << "\n" << "Evaluation du projet : " << p.evaluation << "Equipe du projet: " <<  p.equipe;
@@ -110,6 +125,7 @@ ostream& operator<<(ostream& out, ProjetWeb& p)
     return out;
 };
 
+// Méthode pour affecter un projet web à un autre (opérateur d'affectation)
 ProjetWeb& ProjetWeb::operator=(const ProjetWeb& autreProjet)
 {
     this->titre = autreProjet.titre;
@@ -131,26 +147,33 @@ ProjetWeb& ProjetWeb::operator=(const ProjetWeb& autreProjet)
     return *this;
 };
 
+// Surcharge des opérateurs de comparaison
+
+// Surcharge de l'opérateur >
 bool ProjetWeb::operator>(ProjetWeb& autreProjet)
 {
     return this->technologies.size() > autreProjet.technologies.size();
 };
 
+// Surcharge de l'opérateur <
 bool ProjetWeb::operator<(ProjetWeb& autreProjet)
 {
     return this->technologies.size() < autreProjet.technologies.size();
 };
 
+// Surcharge de l'opérateur >=
 bool ProjetWeb::operator>=(ProjetWeb& autreProjet)
 {
     return this->technologies.size() >= autreProjet.technologies.size();
 };
 
+// Surcharge de l'opérateur <=
 bool ProjetWeb::operator<=(ProjetWeb& autreProjet)
 {
     return this->technologies.size() <= autreProjet.technologies.size();
 };
 
+// Méthode pour afficher les details d'un projet web
 void ProjetWeb::afficherDetails()
 {
     cout << "Détails du projet web" << endl;

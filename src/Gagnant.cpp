@@ -8,9 +8,12 @@
 
 using namespace std;
 
+// Constructeurs
 
+// Constructeur par défaut
 Gagnant::Gagnant() {};
 
+// Constructeur avec paramètres
 Gagnant::Gagnant(int rang, string recompense, float score)
 {
     this->rang = rang;
@@ -18,6 +21,7 @@ Gagnant::Gagnant(int rang, string recompense, float score)
     this->score = score;
 };
 
+// Constructeur par recopie
 Gagnant::Gagnant(const Gagnant& g)
 {
     this->rang = g.rang;
@@ -26,46 +30,59 @@ Gagnant::Gagnant(const Gagnant& g)
     this->projet = g.projet;
 };
 
+// Méthodes pour accéder et modifier les membres privés
+
+// Méthode pour obtenir le rang
 int Gagnant::getRang()
 {
     return this->rang;
 };
 
+// Méthode pour modifier le rang
 void Gagnant::setRang(int rang)
 {
     this->rang = rang;
 };
 
+// Méthode pour modifier le projet
 void Gagnant::setProjet(Projet* projet)
 {
     this->projet = projet;
 };
 
+// Méthode pour obtenir le projet
 Projet* Gagnant::getProjet()
 {
     return this->projet;
 };
 
+// Méthode pour obtenir la récompense
 string Gagnant::getRecompense()
 {
     return this->recompense;
 };
 
+// Méthode pour modifier la récompense
 void Gagnant::setRecompense(string recompense)
 {
     this->recompense = recompense;
 };
 
+// Méthode pour obtenir le score
 float Gagnant::getScore()
 {
     return this->score;
 };
 
+// Méthode pour modifier le score
 void Gagnant::setScore(float description)
 {
     this->score = score;
 };
 
+// Surcharge des opérateurs pour l'entrée/sortie
+
+// Surcharge de l'opérateur << pour afficher les informations d'un gaganant
 ostream& operator<<(ostream& out, Gagnant& g)
 {
     out << "Rang du gagnant: " << g.getRang() << ", Recompense du gagnant: " << g.getRecompense() << ", Score du gagnant: " << g.getScore() <<endl;
@@ -73,20 +90,19 @@ ostream& operator<<(ostream& out, Gagnant& g)
 
     // Vérifier le type du projet
     Projet* projet = g.getProjet();
-    if (typeid(*projet) == typeid(ProjetWeb))
+    if (typeid(*projet) == typeid(ProjetWeb)) // Si le projet est de type ProjetWeb
     {
-        out << *dynamic_cast<ProjetWeb*>(projet);
+        out << *dynamic_cast<ProjetWeb*>(projet); // Utiliser dynamic_cast pour convertir le projet en ProjetWeb et l'afficher
     }
-    else if (typeid(*projet) == typeid(ProjetEmbarque))
+    else if (typeid(*projet) == typeid(ProjetEmbarque)) // Si le projet est de type ProjetEmbarque
     {
-        out << *dynamic_cast<ProjetEmbarque*>(projet);
+        out << *dynamic_cast<ProjetEmbarque*>(projet); // Utiliser dynamic_cast pour convertir le projet en ProjetEmbarque et l'afficher
     }
 
     return out;
-}
+};
 
-
-// Operator >> for Gagnant
+// Surcharge de l'opérateur >> pour saisir les informations d'un gagnant
 istream& operator>>(istream& in, Gagnant& g)
 {
     cout << "Entrez le rang du gagnant : ";
@@ -117,6 +133,7 @@ istream& operator>>(istream& in, Gagnant& g)
     return in;
 };
 
+// Méthode pour affecter un gagnant à un autre (opérateur d'affectation)
 Gagnant& Gagnant::operator=(const Gagnant& autreGagnant)
 {
     rang = autreGagnant.rang;

@@ -4,27 +4,40 @@
 #include <sstream>;
 #include "Organisateur.h";
 #include <limits>
+
 using namespace std;
 
+// Constructeurs
+
+// Constructeur par défaut
 Organisateur::Organisateur() {};
 
+// Constructeur avec paramètres
 Organisateur::Organisateur(int nci, string nom, string email, string role): Personne(nci, nom, email)
 {
     this->role = role;
 };
 
+// Desctructeur
 Organisateur::~Organisateur(){}
 
+// Méthodes pour accéder et modifier les membres privés
+
+// Méthode pour obtenir le role
 string Organisateur::getRole()
 {
     return this->role;
 };
 
+// Méthode pour modifier le role
 void Organisateur::setRole(string role)
 {
     this->role = role;
 };
 
+// Surcharge des opérateurs pour l'entrée/sortie
+
+// Surcharge de l'opérateur << pour afficher les informations d'un organisateur
 ostream& operator<<(ostream& out, Organisateur& o) {
     out << "Cin de l'organisateur: " << o.nci <<  ", Nom de l'organisateur: " << o.nom << ", Email de l'organisateur: " << o.email << ", Role de l'organisateur: " << o.role << endl;
         out << "Numeros de telephone de l'organisateur: ";
@@ -42,6 +55,7 @@ ostream& operator<<(ostream& out, Organisateur& o) {
     return out;
 };
 
+// Surcharge de l'opérateur >> pour saisir les informations d'un organisateur
 istream& operator>>(istream& in, Organisateur& o) {
     cout << "Entrez le NCI de l'organisateur : ";
     in >> o.nci;
@@ -84,6 +98,7 @@ istream& operator>>(istream& in, Organisateur& o) {
     return in;
 };
 
+// Méthode pour afficher les details d'un organisateur
 void Organisateur::afficherDetails() {
     cout << "Détails de l'organisateur :" << endl;
     Personne::afficherDetails();
