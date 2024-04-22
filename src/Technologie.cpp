@@ -41,8 +41,7 @@ ostream& operator<<(ostream& out, Technologie& tech) {
 // Surcharge de l'opérateur >> pour saisir les informations du technologie
 istream& operator>>(istream& in, Technologie& tech) {
     cout << "Donner le nom de la technologie: ";
-    getline(in, tech.nom);
-    in.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(in >> ws, tech.nom);
     return in;
 };
 
@@ -55,7 +54,6 @@ ostream& operator<<(ostream& out, Technologie* tech) {
 // Surcharge de l'opérateur >> pour saisir les informations du technologie*
 istream& operator>>(istream& in, Technologie* tech) {
     cout << "Donner le nom de la technologie: ";
-    getline(in, tech->nom);
-    in.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(in >> ws, tech->nom);
     return in;
 }

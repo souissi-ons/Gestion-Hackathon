@@ -10,17 +10,16 @@ using namespace std;
 // Constructeurs
 
 // Constructeur par défaut
-ProjetEmbarque::ProjetEmbarque() {
+ProjetEmbarque::ProjetEmbarque()
+{
     Projet::nombreProjets ++;
 };
 
 // Constructeur par recopie
 ProjetEmbarque::ProjetEmbarque(const ProjetEmbarque& pe)
 {
-    Projet::nombreProjets++;
     this->titre = pe.titre;
     this->description = pe.description;
-
     Materiel *m;
     for (list<Materiel*>::const_iterator it = pe.materiels.begin(); it != pe.materiels.end(); ++it)
     {
@@ -28,13 +27,14 @@ ProjetEmbarque::ProjetEmbarque(const ProjetEmbarque& pe)
     }
 };
 
-// Desctructeur
+// Destructeur
 ProjetEmbarque::~ProjetEmbarque()
 {
-    for (list<Materiel*>::const_iterator it = this->materiels.begin(); it != this->materiels.end(); ++it)
+   for (list<Materiel*>::const_iterator it = this->materiels.begin(); it != this->materiels.end(); ++it)
     {
         delete *it;
     }
+    this->materiels.clear();
 };
 
 // Méthodes pour accéder et modifier les membres privés
@@ -101,12 +101,9 @@ ostream& operator<<(ostream& out, ProjetEmbarque& p)
 istream& operator>>(istream& in, ProjetEmbarque& p)
 {
     cout << "Entrez le titre du projet : ";
-    getline(in, p.titre);
-    in.ignore();
+    getline(in >> ws, p.titre);
     cout << "Entrez la description du projet : ";
-    getline(in, p.description);
-    in.ignore();
-    in.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(in >> ws, p.description);
     in >> p.evaluation;
     in >> p.equipe;
     int continuer;
@@ -119,6 +116,7 @@ istream& operator>>(istream& in, ProjetEmbarque& p)
         {
             cout << "Veuillez saisir 1 si vous voulez ajouter un autre materiel sinon 0 : ";
             in >> continuer;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         while (continuer != 0 && continuer != 1);
     }

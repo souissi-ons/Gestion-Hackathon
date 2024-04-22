@@ -17,7 +17,6 @@ ProjetWeb::ProjetWeb() {
 // Constructeur par recopie
 ProjetWeb::ProjetWeb(const ProjetWeb& pw)
 {
-    Projet::nombreProjets ++;
     this->titre = pw.titre;
     this->description = pw.description;
 
@@ -28,13 +27,14 @@ ProjetWeb::ProjetWeb(const ProjetWeb& pw)
     }
 };
 
-// Desctructeur
+// Destructeur
 ProjetWeb::~ProjetWeb()
 {
     for (list<Technologie*>::const_iterator it = this->technologies.begin(); it != this->technologies.end(); ++it)
     {
-        delete (*it);
+        delete *it;
     }
+    this->technologies.clear();
 };
 
 // Méthodes pour accéder et modifier les membres privés
@@ -85,12 +85,9 @@ void ProjetWeb::supprimerTechnologie(string nomTechnologie)
 istream& operator>>(istream& in, ProjetWeb& p)
 {
     cout << "Entrez le titre du projet : ";
-    getline(in, p.titre);
-    in.ignore();
+    getline(in >> ws, p.titre);
     cout << "Entrez la description du projet : ";
-    getline(in, p.description);
-    in.ignore();
-    in.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(in >> ws, p.description);
     in >> p.evaluation;
     in >> p.equipe;
     int continuer;
@@ -104,6 +101,7 @@ istream& operator>>(istream& in, ProjetWeb& p)
         {
             cout << "Veuillez saisir 1 si vous voulez ajouter une autre technologie sinon 0 : ";
             in >> continuer;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         while (continuer != 0 && continuer != 1);
     }
@@ -133,17 +131,11 @@ ProjetWeb& ProjetWeb::operator=(const ProjetWeb& autreProjet)
     this->evaluation = autreProjet.evaluation;
     this->equipe = autreProjet.equipe;
 
-    for (Technologie* tech : this->technologies)
-    {
-        delete tech;
-    }
-    technologies.clear();
+    for (Technologie* tech : autreProjet.technologies)
+{
+    this->technologies.push_back(new Technologie(*tech));
+}
 
-    for (list<Technologie*>::const_iterator it = this->technologies.begin(); it != this->technologies.end(); ++it)
-
-    {
-        this->ajouterTechnologie(*it);
-    }
     return *this;
 };
 
@@ -182,7 +174,7 @@ void ProjetWeb::afficherDetails()
     for (list<Technologie*>::const_iterator it = this->technologies.begin(); it != this->technologies.end(); ++it)
     {
         i++;
-        cout << "Materiel " << i << ": " << *it ;
+        cout << "Technologie " << i << ": " << *it ;
     }
 };
 

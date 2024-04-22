@@ -52,11 +52,9 @@ ostream& operator<<(ostream& out, Materiel& mat) {
 // Surcharge de l'opérateur >> pour saisir les informations du materiel
 istream& operator>>(istream& in, Materiel& mat) {
     cout << "Entrez le nom du matériel : ";
-    getline(in, mat.nom);
-    in.ignore();
+    getline(in >> ws, mat.nom);
     cout << "Entrez la description du matériel : ";
-    getline(in, mat.description);
-    in.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(in >> ws, mat.description);
     return in;
 };
 
@@ -69,11 +67,9 @@ ostream& operator<<(ostream& out, Materiel* mat) {
 // Surcharge de l'opérateur >> pour saisir les informations du materiel*
 istream& operator>>(istream& in, Materiel* mat) {
     cout << "Entrez le nom du matériel : ";
-    getline(in, mat->nom);
-    in.ignore();
+    getline(in >> ws, mat->nom);
     cout << "Entrez la description du matériel : ";
-    getline(in, mat->description);
-    in.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(in >> ws, mat->description);
     return in;
 };
 

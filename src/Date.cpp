@@ -84,6 +84,7 @@ istream& operator>>(istream& in, Date& d)
     {
         cout << "Donner l'annee : ";
         in >> d.annee;
+        in.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     while (d.annee < 0);
 
@@ -91,6 +92,7 @@ istream& operator>>(istream& in, Date& d)
     {
         cout << "Donner le mois : ";
         in >> d.mois;
+        in.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     while (d.mois < 1 || d.mois > 12);
 
@@ -98,6 +100,8 @@ istream& operator>>(istream& in, Date& d)
     {
         cout << "Donner le jour : ";
         in >> d.jour;
+        in.ignore(numeric_limits<streamsize>::max(), '\n');
+
     }
     while ((d.jour < 1) ||
             (d.mois == 4 || d.mois == 6 || d.mois == 9 || d.mois == 11) && (d.jour > 30) ||

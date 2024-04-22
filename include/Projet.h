@@ -14,8 +14,10 @@ protected:
     static int nombreProjets;
     string titre;
     string description;
-    Evaluation *evaluation;
-    Equipe *equipe;
+    //Evaluation *evaluation;
+    //Equipe *equipe;
+    Evaluation evaluation;
+    Equipe equipe;
 public:
     Projet();
     Projet(string, string);
@@ -25,10 +27,10 @@ public:
     void setTitre(string);
     string getDescription();
     void setDescription(string);
-    void setEvaluation(Evaluation*);
-    void setEquipe(Equipe*);
-    Equipe* getEquipe();
-    Evaluation* getEvaluation();
+    void setEvaluation(Evaluation);
+    void setEquipe(Equipe);
+    Equipe getEquipe();
+    Evaluation getEvaluation();
     static int getNombreProjets();
     static void setNombreProjets(int);
     virtual void afficherDetails() = 0;

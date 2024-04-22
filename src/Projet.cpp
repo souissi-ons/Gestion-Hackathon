@@ -12,14 +12,12 @@ int Projet::nombreProjets = 0;
 // Constructeurs
 
 // Constructeur par défaut
-Projet::Projet() {
-    Projet::nombreProjets++;
-};
+Projet::Projet()
+{};
 
 // Constructeur avec paramètres
 Projet::Projet(string titre, string description)
 {
-    Projet::nombreProjets;
     this->titre = titre;
     this->description = description;
 };
@@ -27,7 +25,6 @@ Projet::Projet(string titre, string description)
 // Constructeur par recopie
 Projet::Projet(const Projet& p)
 {
-    Projet::nombreProjets;
     this->titre = p.titre;
     this->description = p.description;
     this->evaluation = p.evaluation;
@@ -35,10 +32,8 @@ Projet::Projet(const Projet& p)
 };
 
 // Desctructeur
-Projet::~Projet() {
-    delete this->equipe;
-    delete this->evaluation;
-};
+Projet::~Projet()
+{};
 
 // Méthodes pour accéder et modifier les membres privés
 
@@ -67,25 +62,25 @@ void Projet::setDescription(string description)
 };
 
 // Méthode pour modifier l'évaluation
-void Projet::setEvaluation(Evaluation* evaluation)
+void Projet::setEvaluation(Evaluation evaluation)
 {
     this->evaluation = evaluation;
 };
 
 // Méthode pour obtenir l'évaluation
-Evaluation* Projet::getEvaluation()
+Evaluation Projet::getEvaluation()
 {
     return this->evaluation;
 };
 
 // Méthode pour modifier l'équipe
-void Projet::setEquipe(Equipe* equipe)
+void Projet::setEquipe(Equipe equipe)
 {
     this->equipe = equipe;
 };
 
 // Méthode pour obtenir l'équipe
-Equipe* Projet::getEquipe()
+Equipe Projet::getEquipe()
 {
     return this->equipe;
 };
@@ -103,7 +98,8 @@ void Projet::setNombreProjets(int nb)
 };
 
 // Méthode pour afficher les details d'un projet
-void Projet::afficherDetails(){
+void Projet::afficherDetails()
+{
     cout << "Titre: " << this->titre << endl;
     cout << "Description : " << this->description << endl;
     cout<< "Evaluation : " << this->evaluation;

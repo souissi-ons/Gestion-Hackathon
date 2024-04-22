@@ -21,8 +21,8 @@ public:
     void setCompetences(map<string, string>);
     static int getNombreParticipants();
     static void setNombreParticipants(int);
+    bool rechercherCompetence(string);
     void ajouterCompetence(Competence&);
-    int rechercherCompetence(string);
     void supprimerCompetence(string);
     friend ostream& operator<<(ostream&, Participant&);
     friend istream& operator>>(istream&, Participant&);

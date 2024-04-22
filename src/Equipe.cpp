@@ -123,8 +123,7 @@ ostream& operator<<(ostream& out, Equipe& e)
 istream& operator>>(istream& in, Equipe& e)
 {
     cout << "Entrez le nom de l'équipe : ";
-    getline(in, e.nom);
-    in.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(in >> ws, e.nom);
     cout << "Entrez la date de création de l'équipe : ";
     in >> e.dateCreation;
     int continuer;
@@ -135,6 +134,7 @@ istream& operator>>(istream& in, Equipe& e)
         e.participants.push_back(p);
         cout << "Veuillez saisir 1 si vous voulez ajouter un autre participant sinon 0: ";
         in >> continuer;
+        in.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     while (continuer == 1);
     return in;
@@ -156,8 +156,7 @@ ostream& operator<<(ostream& out, Equipe* e)
 istream& operator>>(istream& in, Equipe* e)
 {
     cout << "Entrez le nom de l'équipe : ";
-    getline(in, e->nom);
-    in.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(in >> ws, e->nom);
     cout << "Entrez la date de création de l'équipe : ";
     in >> e->dateCreation;
     int continuer;
@@ -168,6 +167,7 @@ istream& operator>>(istream& in, Equipe* e)
         e->participants.push_back(p);
         cout << "Veuillez saisir 1 si vous voulez ajouter un autre participant sinon 0: ";
         in >> continuer;
+        in.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     while (continuer == 1);
     return in;

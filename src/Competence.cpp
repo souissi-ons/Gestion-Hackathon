@@ -51,11 +51,9 @@ void Competence::setDescription(string description)
 istream& operator>>(istream& in, Competence& c)
 {
     cout << "Entrez le nom de la competence : ";
-    getline(in, c.nom);
-    in.ignore(); // Ignorer le caractère de fin de ligne
+    getline(in >> ws, c.nom);
     cout << "Entrez la description de la competence : ";
-    getline(in, c.description);
-    in.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorer jusqu'à la fin de la ligne
+    getline(in >> ws, c.description);
     return in;
 };
 
@@ -70,11 +68,9 @@ ostream& operator << (ostream& out, Competence& c)
 istream& operator >> (istream& in, Competence* c)
 {
    cout << "Entrez le nom de la competence : ";
-    getline(in, c->nom);
-    in.ignore(); // Ignorer le caractère de fin de ligne
+    getline(in >> ws, c->nom);
     cout << "Entrez la description de la competence : ";
-    getline(in, c->description);
-    in.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorer jusqu'à la fin de la ligne
+    getline(in >> ws, c->description);
     return in;
 };
 

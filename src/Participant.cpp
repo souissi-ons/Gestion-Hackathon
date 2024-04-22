@@ -22,18 +22,9 @@ Participant::Participant()
 // Constructeur par recopie
 Participant::Participant(const Participant& p)
 {
-    Participant::nombreParticipants++;
     this->nci = p.nci;
     this->nom = p.nom;
     this->email = p.email;
-    for (list<string>::const_iterator it = p.numerosTelephone.begin(); it != p.numerosTelephone.end(); ++it)
-    {
-        this->numerosTelephone.push_back(*it);
-    }
-    for (list<string>::const_iterator it = p.adresses.begin(); it != p.adresses.end(); ++it)
-    {
-        this->adresses.push_back(*it);
-    }
     map<string, string>::const_iterator it;
     for (it = p.competences.begin(); it != p.competences.end(); ++it)
     {
@@ -71,31 +62,32 @@ void Participant::setNombreParticipants(int nb)
 };
 
 // Méthode pour rechercher une compétence dans le map des compétences par son nom
-int Participant::rechercherCompetence(string nomCompetence)
+bool Participant::rechercherCompetence(string nomCompetence)
 {
-    map<string, string>::iterator it;
-    for (it = this->competences.begin(); it != this->competences.end(); ++it)
+    for (const auto& it : this->competences)
     {
-        if (it->first == nomCompetence)
+        if (it.first == nomCompetence)
         {
-            return distance(this->competences.begin(), it);
+            return true; // La compétence existe déjà
         }
     }
-    return -1;
+    return false; // La compétence n'existe pas encore
 };
 
-// Méthode pour ajouter une compétence dans le map des compétences
+// Méthode pour ajouter une compétence  dans le map des compétences
 void Participant::ajouterCompetence(Competence& competence)
 {
-    if (this->competences.find(competence.getNom()) == this->competences.end())
+    string nom = competence.getNom();
+    if (!this->rechercherCompetence(nom))
     {
-        this->competences[competence.getNom()] = competence.getDescription();
+        this->competences[nom] = competence.getDescription();
     }
     else
     {
-        cout << "La competence avec le nom '" << competence.getNom() << "' existe deja." << endl;
+        cout << "La compétence avec ce nom existe déjà." << endl;
     }
-};
+}
+
 
 // Méthode pour supprimer une compétence dans le map des compétences par son nom
 void Participant::supprimerCompetence(string nomCompetence)
@@ -137,25 +129,27 @@ istream& operator>>(istream& in, Participant& p)
 {
     cout << "Entrez le NCI du participant : ";
     in >> p.nci;
+    in.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore le caractère de retour à la ligne
+
     cout << "Entrez le nom du participant : ";
-    getline(in, p.nom);
-    in.ignore();
+    getline(in>> ws, p.nom);
+
     cout << "Entrez l'email du participant : ";
     getline(in, p.email);
-    in.ignore();
+
     int continuerNumeros;
     do
     {
         string numero;
         cout << "Entrez un numéro de téléphone : ";
-        getline(cin, numero);
-        in.ignore();
+        getline(in >> ws, numero);
         p.ajouterNumeroTelephone(numero);
 
         do
         {
             cout << "Veuillez saisir 1 si vous voulez ajouter un autre numéro de téléphone sinon 0: ";
-            cin >> continuerNumeros;
+            in >> continuerNumeros;
+            in.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore le caractère de retour à la ligne
         }
         while (continuerNumeros != 0 && continuerNumeros != 1);
     }
@@ -166,14 +160,14 @@ istream& operator>>(istream& in, Participant& p)
     {
         string adresse;
         cout << "Entrez une adresse : ";
-        getline(cin, adresse);
-        in.ignore();
+        getline(in >> ws, adresse);
         p.ajouterAdresse(adresse);
 
         do
         {
             cout << "Veuillez saisir 1 si vous voulez ajouter une autre adresse sinon 0: ";
-            cin >> continuerAdresses;
+            in >> continuerAdresses;
+            in.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore le caractère de retour à la ligne
         }
         while (continuerAdresses != 0 && continuerAdresses != 1);
     }
@@ -183,13 +177,15 @@ istream& operator>>(istream& in, Participant& p)
     int continuer;
     do
     {
-        cin >> c;
+        in >> c;
         p.ajouterCompetence(c);
 
         do
         {
             cout << "Veuillez saisir 1 si vous voulez ajouter une autre competence sinon 0: ";
             in >> continuer;
+            in.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore le caractère de retour à la ligne
+
         }
         while (continuer != 0 && continuer != 1);
     }
@@ -197,6 +193,7 @@ istream& operator>>(istream& in, Participant& p)
 
     return in;
 };
+
 
 // Méthode pour affecter un participant à une autre (opérateur d'affectation)
 Participant& Participant::operator=(Participant& autreParticipant)

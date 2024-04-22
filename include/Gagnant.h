@@ -1,8 +1,8 @@
 #ifndef Gagnant_H
 #define Gagnant_H
 
-#include <string>;
-#include "Projet.h";
+#include <string>
+#include "Projet.h"
 
 using namespace std;
 
@@ -10,13 +10,14 @@ class Gagnant
 {
 private:
     int rang;
-    Projet *projet;
+    Projet* projet;
     string recompense;
     float score;
 public:
     Gagnant();
     Gagnant(int, string, float);
     Gagnant(const Gagnant&);
+    ~Gagnant();
     int getRang();
     void setProjet(Projet*);
     Projet* getProjet();

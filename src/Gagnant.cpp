@@ -30,6 +30,12 @@ Gagnant::Gagnant(const Gagnant& g)
     this->projet = g.projet;
 };
 
+// Desctructeur
+Gagnant::~Gagnant()
+{
+    delete this->projet;
+};
+
 // Méthodes pour accéder et modifier les membres privés
 
 // Méthode pour obtenir le rang
@@ -107,14 +113,15 @@ istream& operator>>(istream& in, Gagnant& g)
 {
     cout << "Entrez le rang du gagnant : ";
     in >> g.rang;
-    cout << "Entrez la recompense du gagnant : ";
-    getline(in, g.recompense);
     in.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Entrez la recompense du gagnant : ";
+    getline(in>> ws, g.recompense);
     int choix;
     do
     {
         cout << "Choisissez le type de projet à ajouter (1 pour Projet Web, 2 pour Projet Embarque) : ";
         in >> choix;
+        in.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     while (choix !=1 && choix!=2);
     if (choix == 1)
@@ -129,27 +136,30 @@ istream& operator>>(istream& in, Gagnant& g)
         in >> projetEmbarque;
         g.projet = &projetEmbarque;
     };
-    g.score = g.projet->getEvaluation()->calculerMoyenne();
+    g.score = g.projet->getEvaluation().calculerMoyenne();
     return in;
 };
 
-// Méthode pour affecter un gagnant à un autre (opérateur d'affectation)
+// Opérateur d'affectation
 Gagnant& Gagnant::operator=(const Gagnant& autreGagnant)
 {
-    rang = autreGagnant.rang;
-    recompense = autreGagnant.recompense;
-    score = autreGagnant.score;
+    if (this != &autreGagnant) {
+        rang = autreGagnant.rang;
+        recompense = autreGagnant.recompense;
+        score = autreGagnant.score;
 
-    if (typeid(*projet) == typeid(ProjetEmbarque))
-    {
-        *dynamic_cast<ProjetEmbarque*>(projet) = *(dynamic_cast<const ProjetEmbarque*>(autreGagnant.projet));
-    }
-    else if (typeid(*projet) == typeid(ProjetWeb))
-    {
-        *dynamic_cast<ProjetWeb*>(projet) = *(dynamic_cast<const ProjetWeb*>(autreGagnant.projet));
-    }
+        // Gestion de l'allocation dynamique
+        delete projet; // Libérer la mémoire du projet actuel
+        projet = nullptr; // Réinitialiser le pointeur
 
+        // Copie du projet en fonction du type
+        if (typeid(*autreGagnant.projet) == typeid(ProjetEmbarque)) {
+            projet = new ProjetEmbarque(*dynamic_cast<const ProjetEmbarque*>(autreGagnant.projet));
+        } else if (typeid(*autreGagnant.projet) == typeid(ProjetWeb)) {
+            projet = new ProjetWeb(*dynamic_cast<const ProjetWeb*>(autreGagnant.projet));
+        }
+    }
     return *this;
-};
+}
 
 

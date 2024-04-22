@@ -58,40 +58,41 @@ void afficherMenuEquipe()
     cout << "8. Retour au menu principal" << endl;
 };
 
+
 void nouvelleEquipe(Equipe& equipe)
 {
     equipe= Equipe();
-    Competence competence1("Programmation", "Compétence en programmation");
+    Competence competence1("Cybersécurité", "Compétence en cybersécurité");
     Competence competence2("Design", "Compétence en design");
-    Competence competence3("Réseaux", "Compétence en réseaux");
+    Competence competence3("Robotique", "Compétence en robotique");
 
     Participant* participant1 = new Participant();
-    participant1->setNci(333333);
-    participant1->setNom("Participant 1");
-    participant1->setEmail("participant1@example.com");
+    participant1->setNci(100111);
+    participant1->setNom("Participant 15");
+    participant1->setEmail("participant15@example.com");
 
     participant1->ajouterCompetence(competence1);
     participant1->ajouterCompetence(competence2);
 
     Participant* participant2 = new Participant();
-    participant2->setNci(222222);
-    participant2->setNom("Participant 2");
-    participant2->setEmail("participant2@example.com");
+    participant2->setNci(100222);
+    participant2->setNom("Participant 16");
+    participant2->setEmail("participant5@example.com");
 
     participant2->ajouterCompetence(competence1);
     participant2->ajouterCompetence(competence2);
     participant2->ajouterCompetence(competence3);
 
     Participant* participant3 = new Participant();
-    participant3->setNci(111111);
-    participant3->setNom("Participant 3");
-    participant3->setEmail("participant3@example.com");
+    participant3->setNci(100333);
+    participant3->setNom("Participant 17");
+    participant3->setEmail("participant6@example.com");
 
     participant3->ajouterCompetence(competence3);
 
-    Date dateDeCreation(10, 3, 2024);
+    Date dateDeCreation(10, 4, 2024);
 
-    equipe.setNom("Équipe 1");
+    equipe.setNom("Équipe 9");
     equipe.setDateCreation(dateDeCreation);
     equipe.ajouterParticipant(participant1);
     equipe.ajouterParticipant(participant2);
@@ -102,25 +103,25 @@ void nouvelleEquipe(Equipe& equipe)
 void nouveauHackathon(Hackathon& hackathon)
 {
     hackathon = Hackathon();
-    Date dateDeDebut(26, 5, 2024);
-    Date dateDeFin(2, 6, 2024);
-    Date dateDeCreation1(10, 3, 2024);
-    Date dateDeCreation2(11, 3, 2024);
-    Date dateDeCreation3(12, 3, 2024);
-    Date dateDeCreation4(13, 3, 2024);
+    Date dateDeDebut(28, 6, 2024);
+    Date dateDeFin(3, 7, 2024);
+    Date dateDeCreation1(10, 4, 2024);
+    Date dateDeCreation2(11, 4, 2024);
+    Date dateDeCreation3(12, 4, 2024);
+    Date dateDeCreation4(13, 4, 2024);
 
     // Compétences
-    Competence competence1("Programmation", "Compétence en programmation");
-    Competence competence2("Design", "Compétence en design");
+    Competence competence1("SEO", "Optimisation SEO");
+    Competence competence2("CAO", "CAO électronique");
     Competence competence3("Réseaux", "Compétence en réseaux");
 
     // Technologies
-    Technologie* technologieWeb1 = new Technologie("HTML");
+    Technologie* technologieWeb1 = new Technologie("Angular");
     Technologie* technologieWeb2 = new Technologie("React");
-    Technologie* technologieWeb3 = new Technologie("Node.js");
+    Technologie* technologieWeb3 = new Technologie("PHP");
 
     // Materiels
-    Materiel* materielEmbarque1 = new Materiel("Carte Arduino", "Description du matériel embarqué");
+    Materiel* materielEmbarque1 = new Materiel("Intel Edison", "Description du matériel embarqué");
     Materiel* materielEmbarque2 = new Materiel("Raspberry Pi", "Description du matériel Raspberry Pi pour l'embarqué");
     Materiel* materielEmbarque3 = new Materiel("ESP32", "Description du matériel ESP32 pour l'embarqué");
 
@@ -134,9 +135,9 @@ void nouveauHackathon(Hackathon& hackathon)
     for (int i = 0; i < 7; ++i)
     {
         Participant* participant = new Participant();
-        participant->setNci(100000 + i);
-        participant->setNom("Participant " + to_string(i + 1));
-        participant->setEmail("participant" + to_string(i + 1) + "@example.com");
+        participant->setNci(100007 + i);
+        participant->setNom("Participant " + to_string(i + 8));
+        participant->setEmail("participant" + to_string(i + 8) + "@example.com");
 
         // Attribution de compétences différentes à chaque participant
         if (i < 2)
@@ -174,89 +175,84 @@ void nouveauHackathon(Hackathon& hackathon)
     }
 
     // Création des équipes avec leurs participants respectifs
-    Equipe* equipe1 = new Equipe();
-    equipe1->setNom("Équipe 1");
-    equipe1->setDateCreation(dateDeCreation1);
-    equipe1->ajouterParticipant(participants[0]);
-    equipe1->ajouterParticipant(participants[1]);
-    equipes.push_back(equipe1);
+    Equipe equipe1;
+    equipe1.setNom("Équipe 5");
+    equipe1.setDateCreation(dateDeCreation1);
+    equipe1.ajouterParticipant(participants[0]);
+    equipe1.ajouterParticipant(participants[1]);
 
-    Equipe *equipe2 = new Equipe();
-    equipe2->setNom("Équipe 2");
-    equipe2->setDateCreation(dateDeCreation2);
-    equipe2->ajouterParticipant(participants[2]);
-    equipe2->ajouterParticipant(participants[3]);
-    equipe2->ajouterParticipant(participants[4]);
-    equipes.push_back(equipe2);
+    Equipe equipe2;
+    equipe2.setNom("Équipe 6");
+    equipe2.setDateCreation(dateDeCreation2);
+    equipe2.ajouterParticipant(participants[2]);
+    equipe2.ajouterParticipant(participants[3]);
+    equipe2.ajouterParticipant(participants[4]);
 
-    Equipe *equipe3 = new Equipe();
-    equipe3->setNom("Équipe 3");
-    equipe3->setDateCreation(dateDeCreation3);
-    equipe3->ajouterParticipant(participants[5]);
-    equipes.push_back(equipe3);
+    Equipe equipe3;
+    equipe3.setNom("Équipe 7");
+    equipe3.setDateCreation(dateDeCreation3);
+    equipe3.ajouterParticipant(participants[5]);
 
-
-    Equipe *equipe4 = new Equipe();
-    equipe4->setNom("Équipe 4");
-    equipe4->setDateCreation(dateDeCreation4);
-    equipe4->ajouterParticipant(participants[6]);
-    equipes.push_back(equipe4);
+    Equipe equipe4;
+    equipe4.setNom("Équipe 8");
+    equipe4.setDateCreation(dateDeCreation4);
+    equipe4.ajouterParticipant(participants[6]);
 
     // Évaluations
-    Evaluation *eval1 = new Evaluation(18.5, 16.7, 19.0);
-    Evaluation *eval2 = new Evaluation(17.8, 15.9, 18.2);
-    Evaluation *eval3 = new Evaluation(19.0, 18.0, 19.5);
-    Evaluation *eval4 = new Evaluation(16.5, 14.8, 17.2);
+    Evaluation eval1 (18.5, 16.7, 19.0);
+    Evaluation eval2 (19.8, 17.9, 18.2);
+    Evaluation eval3 (12.0, 15.0, 19.5);
+    Evaluation eval4 (16.5, 14.8, 17.2);
 
     // Projets
     ProjetWeb* projetWeb1 = new ProjetWeb();
-    projetWeb1->setTitre("Projet Web 1");
-    projetWeb1->setDescription("Description du projet web 1");
+    projetWeb1->setTitre("Projet Web 4");
+    projetWeb1->setDescription("Description du projet web 4");
     projetWeb1->setEquipe(equipe1);
     projetWeb1->setEvaluation(eval1);
     projetWeb1->ajouterTechnologie(technologieWeb1);
 
     ProjetWeb* projetWeb2 = new ProjetWeb();
-    projetWeb2->setTitre("Projet Web 2");
-    projetWeb2->setDescription("Description du projet web 2");
+    projetWeb2->setTitre("Projet Web 5");
+    projetWeb2->setDescription("Description du projet web 5");
     projetWeb2->setEquipe(equipe2);
     projetWeb2->setEvaluation(eval2);
     projetWeb2->ajouterTechnologie(technologieWeb2);
     projetWeb2->ajouterTechnologie(technologieWeb3);
 
     ProjetWeb* projetWeb3 = new ProjetWeb();
-    projetWeb3->setTitre("Projet Web 3");
-    projetWeb3->setDescription("Description du projet web 3");
+    projetWeb3->setTitre("Projet Web 6");
+    projetWeb3->setDescription("Description du projet web 6");
     projetWeb3->setEquipe(equipe3);
     projetWeb3->setEvaluation(eval4);
     projetWeb3->ajouterTechnologie(technologieWeb3);
 
     ProjetEmbarque* projetEmbarque1 = new ProjetEmbarque();
-    projetEmbarque1->setTitre("Projet Embarqué 1");
-    projetEmbarque1->setDescription("Description du projet embarqué 1");
+    projetEmbarque1->setTitre("Projet Embarqué 2");
+    projetEmbarque1->setDescription("Description du projet embarqué 2");
     projetEmbarque1->setEquipe(equipe4);
     projetEmbarque1->setEvaluation(eval3);
     projetEmbarque1->ajouterMateriel(materielEmbarque1);
 
 
     // Hackathon
-    hackathon.setTitre("HackathonC++");
-    hackathon.setDescription("Hackathon sur la programmation en C++");
+    hackathon.setTitre("HackathonRobotique");
+    hackathon.setDescription("Hackathon sur la robotique");
     hackathon.setDateDeDebut(dateDeDebut);
     hackathon.setDateDeFin(dateDeFin);
-    hackathon.setTheme("Développement logiciel");
+    hackathon.setTheme("Ingénierie en robotique");
     hackathon.ajouterProjet(projetWeb1);
     hackathon.ajouterProjet(projetWeb2);
     hackathon.ajouterProjet(projetEmbarque1);
     hackathon.ajouterProjet(projetWeb3);
 
     // Gagnants
-    hackathon.remplirGagnants("2000DT", "1000DT", "500DT");
+    hackathon.remplirGagnants("4500DT", "2000DT", "1000DT");
 
     // Organisateurs
-       // Organisateurs
+    // Organisateurs
     Organisateur* org1 = new Organisateur(111111, "Organisateur 1", "org1@example.com", "Rôle 1");
-    Organisateur* org2 = new Organisateur(222222, "Organisateur 2", "org2@example.com", "Rôle 2");
+    Organisateur* org2 = new Organisateur(555555, "Organisateur 3", "org5@example.com", "Rôle 3");
     org1->ajouterNumeroTelephone("123456789");
     org1->ajouterNumeroTelephone("987654321");
     org2->ajouterNumeroTelephone("987654321");
@@ -270,12 +266,12 @@ void nouveauHackathon(Hackathon& hackathon)
     hackathon.ajouterOrganisateur(org2);
 
     // Création des spécialisations
-    Specialisation* spec1 = new Specialisation("Langages de programmation", "Expertise en C++, Java, Python");
-    Specialisation* spec2 = new Specialisation("Design UI/UX", "Expertise en conception d'interfaces utilisateur");
+    Specialisation* spec1 = new Specialisation("Systèmes embarqués", "Expertise en microcontrôleurs");
+    Specialisation* spec2 = new Specialisation("Intelligence Artificielle", "Expertise en reconnaissance d'image");
     Specialisation* spec3 = new Specialisation("Sécurité informatique", "Expertise en cryptographie et protection des données");
 
     // Juges
-    Juge* juge1 = new Juge(333333, "Juge 1", "juge1@example.com", "Expertise 1");
+    Juge* juge1 = new Juge(666666, "Juge 3", "juge3@example.com", "Expertise 3");
     Juge* juge2 = new Juge(444444, "Juge 2", "juge2@example.com", "Expertise 2");
     juge1->ajouterSpecialisation(spec1);
     juge1->ajouterSpecialisation(spec2);
@@ -293,7 +289,6 @@ void nouveauHackathon(Hackathon& hackathon)
     hackathon.ajouterJuge(juge2);
 };
 
-
 int main()
 {
     Hackathon hackathon;
@@ -310,8 +305,8 @@ int main()
         case 1:
         {
             system("cls");
-            //cin >> hackathon;
-            nouveauHackathon(hackathon);
+            cin >> hackathon;
+            //nouveauHackathon(hackathon);
             int choixHackathon;
             do
             {
@@ -356,6 +351,7 @@ int main()
                     if (jugeTrouve != nullptr)
                     {
                         cout << "Juge trouvé : " << *jugeTrouve << endl;
+                        delete jugeTrouve;
                     }
                     else
                     {
@@ -383,6 +379,7 @@ int main()
                     if (orgTrouve != nullptr)
                     {
                         cout << "Organisateur trouvé : " << *orgTrouve << endl;
+                        delete orgTrouve;
                     }
                     else
                     {
@@ -408,12 +405,14 @@ int main()
                     {
                         cout << "Projet embarqué avec le plus de matériels :" << endl;
                         cout << *projetEmbarqueAvecPlusDeMateriels << endl;
+                        delete projetEmbarqueAvecPlusDeMateriels;
                     }
                     else
                     {
                         cout << "Aucun projet embarqué trouvé." << endl;
                     }
                     break;
+
                 }
                 case 10:
                 {
@@ -423,6 +422,7 @@ int main()
                     {
                         cout << "Projet web avec le plus de technologies :" << endl;
                         cout << *projetWebAvecPlusDeTechnologies << endl;
+                        delete projetWebAvecPlusDeTechnologies;
                     }
                     else
                     {
@@ -466,8 +466,8 @@ int main()
         case 4:
         {
             system("cls");
-            //cin >> equipe;
-            nouvelleEquipe(equipe);
+            cin >> equipe;
+            //nouvelleEquipe(equipe);
             int choixEquipe;
             do
             {
@@ -503,6 +503,7 @@ int main()
                     {
                         cout << "Participant avec le plus de compétences :" << endl;
                         cout << *participantAvecPlusDeCompetences << endl;
+                        delete participantAvecPlusDeCompetences;
                     }
                     else
                     {
@@ -593,5 +594,7 @@ int main()
         }
     }
     while (choixPrincipal != 9);
+
     return 0;
-};
+}
+

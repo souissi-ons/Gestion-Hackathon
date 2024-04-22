@@ -51,9 +51,9 @@ ostream& operator<<(ostream& out, Specialisation& specialisation) {
 // Surcharge de l'opérateur >> pour saisir les informations du specialisation
 istream& operator>>(istream& in, Specialisation& specialisation) {
     cout << "Entrez le nom de la spécialisation : ";
-    getline(in, specialisation.nom);
+    getline(in>> ws, specialisation.nom);
     cout << "Entrez la description de la spécialisation : ";
-    in.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(in >> ws, specialisation.description);
     return in;
 };
 
@@ -68,12 +68,10 @@ istream& operator>>(istream& in, Specialisation* specialisation) {
     string nom;
     string description;
     cout << "Entrez le nom de la spécialisation : ";
-    getline(in, nom);
+    getline(in>> ws, nom);
     specialisation->setNom(nom);
-    in.ignore();
     cout << "Entrez la description de la spécialisation : ";
-    getline(in, description);
+    getline(in >> ws, description);
     specialisation->setDescription(description);
-    in.ignore(numeric_limits<streamsize>::max(), '\n');
     return in;
 }

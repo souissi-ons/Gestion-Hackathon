@@ -22,14 +22,6 @@ Juge::Juge(const Juge& autreJuge)
     this->nom = autreJuge.nom;
     this->email = autreJuge.email;
     this->expertise = autreJuge.expertise;
-    for (list<string>::const_iterator it = autreJuge.numerosTelephone.begin(); it != autreJuge.numerosTelephone.end(); ++it)
-    {
-        this->numerosTelephone.push_back(*it);
-    }
-    for (list<string>::const_iterator it = autreJuge.adresses.begin(); it != autreJuge.adresses.end(); ++it)
-    {
-        this->adresses.push_back(*it);
-    }
     for (Specialisation* spec : autreJuge.specialisations)
     {
         this->specialisations.push_back(new Specialisation(*spec));
@@ -39,11 +31,11 @@ Juge::Juge(const Juge& autreJuge)
 // Desctructeur
 Juge::~Juge()
 {
-    for (Specialisation* spec : specialisations)
+    for (Specialisation* spec : this->specialisations)
     {
         delete spec;
     }
-}
+};
 
 // Méthodes pour accéder et modifier les membres privés
 
@@ -150,27 +142,25 @@ istream& operator>>(istream& in, Juge& juge)
 {
     cout << "Entrez le numéro de carte identité du membre jury : ";
     in >> juge.nci;
+    in.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << "Entrez le nom du membre jury : ";
-    getline(in, juge.nom);
-    in.ignore();
+    getline(in >> ws, juge.nom);
     cout << "Entrez l'email du membre jury : ";
-    getline(in, juge.email);
-    in.ignore();
+    getline(in >> ws, juge.email);
     cout << "Entrez l'expertise du membre jury : ";
     getline(in, juge.expertise);
-    in.ignore();
     int continuerNumeros;
     do
     {
         string numero;
         cout << "Entrez un numéro de téléphone : ";
-        getline(cin, numero);
-        in.ignore();
+        getline(in >> ws, numero);
         juge.ajouterNumeroTelephone(numero);
         do
         {
             cout << "Veuillez saisir 1 si vous voulez ajouter un autre numéro de téléphone sinon 0: ";
-            cin >> continuerNumeros;
+            in >> continuerNumeros;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         while (continuerNumeros != 0 && continuerNumeros != 1);
     }
@@ -181,14 +171,14 @@ istream& operator>>(istream& in, Juge& juge)
     {
         string adresse;
         cout << "Entrez une adresse : ";
-        getline(cin, adresse);
-        in.ignore();
+        getline(in >> ws, adresse);
         juge.ajouterAdresse(adresse);
 
         do
         {
             cout << "Veuillez saisir 1 si vous voulez ajouter une autre adresse sinon 0: ";
-            cin >> continuerAdresses;
+            in >> continuerAdresses;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         while (continuerAdresses != 0 && continuerAdresses != 1);
     }
@@ -204,6 +194,7 @@ istream& operator>>(istream& in, Juge& juge)
         {
             cout << "Veuillez saisir 1 si vous voulez ajouter une autre spécialisation sinon 0 : ";
             in >> continuer;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         while (continuer != 0 && continuer != 1);
     }

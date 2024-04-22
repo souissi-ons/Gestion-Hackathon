@@ -31,11 +31,12 @@ Hackathon::Hackathon(const Hackathon& h)
     {
         this->juges.push_back(*it);
     }
-
+    this->juges.clear();
     for (list<Organisateur*>::const_iterator it = h.organisateurs.begin(); it != h.organisateurs.end(); ++it)
     {
         this->organisateurs.push_back(*it);
     }
+    this->organisateurs.clear();
 
     for (const auto& projet : h.projets)
     {
@@ -288,7 +289,7 @@ int Hackathon::rechercherGagnant(string nomEquipeGagnante)
 {
     for (int i=0; i<this->gagnants.size(); i++)
     {
-        if(this->gagnants[i]->getProjet()->getEquipe()->getNom()== nomEquipeGagnante)
+        if(this->gagnants[i]->getProjet()->getEquipe().getNom()== nomEquipeGagnante)
         {
             return i;
         }
@@ -308,12 +309,12 @@ void Hackathon::remplirGagnants(string recompense1, string recompense2, string r
     // Trier les projets par moyenne décroissante
     sort(projets.begin(), projets.end(), [](Projet* a, Projet* b)
     {
-        return a->getEvaluation()->calculerMoyenne() > b->getEvaluation()->calculerMoyenne();
+        return a->getEvaluation().calculerMoyenne() > b->getEvaluation().calculerMoyenne();
     });
     // Créer les trois premiers gagnants s'il y a au moins trois projets
     for (int i = 0; i < min(3, static_cast<int>(projets.size())); ++i)
     {
-        float moyenne = projets[i]->getEvaluation()->calculerMoyenne();
+        float moyenne = projets[i]->getEvaluation().calculerMoyenne();
         string recompense = "";
         // Déterminer la récompense en fonction du classement
         if (i == 0)
@@ -403,11 +404,9 @@ istream& operator>>(istream& in, Hackathon& h)
 {
     Date d;
     cout << "Entrez le titre du hackathon : ";
-    getline(in, h.titre);
-    in.ignore();
+    getline(in >> ws, h.titre);
     cout << "Entrez la description du hackathon : ";
-    getline(in, h.description);
-    in.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(in >> ws, h.description);
     cout << "Entrez la date de debut du hackathon : ";
     in >> h.dateDeDebut;
     do
@@ -417,8 +416,7 @@ istream& operator>>(istream& in, Hackathon& h)
     }
     while (h.dateDeFin <= h.dateDeDebut);
     cout << "Entrez le theme du hackathon : ";
-    getline(in, h.theme);
-    in.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(in >> ws, h.theme);
     int continuer;
     do
     {
@@ -429,6 +427,7 @@ istream& operator>>(istream& in, Hackathon& h)
         {
             cout << "Veuillez saisir 1 si vous voulez ajouter un autre organisateur sinon 0: ";
             in >> continuer;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         while (continuer != 0 && continuer != 1);
     }
@@ -442,6 +441,7 @@ istream& operator>>(istream& in, Hackathon& h)
         {
             cout << "Veuillez saisir 1 si vous voulez ajouter un autre juge sinon 0: ";
             in >> continuer;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         while (continuer != 0 && continuer != 1);
     }
@@ -453,6 +453,7 @@ istream& operator>>(istream& in, Hackathon& h)
         {
             cout << "Choisissez le type de projet à ajouter (1 pour Projet Web, 2 pour Projet Embarque) : ";
             in >> choix;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         while (choix !=1 && choix!=2);
 
@@ -477,20 +478,18 @@ istream& operator>>(istream& in, Hackathon& h)
         {
             cout << "Veuillez saisir 1 si vous voulez ajouter un autre projet sinon 0: ";
             in >> continuer;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         while (continuer !=0 && continuer!=1);
     }
     while (continuer == 1);
     string premierePlace, deuxiemePlace, troisiemePlace;
     cout << "Entrez la récompense de la première place : ";
-    getline(in, premierePlace);
-    in.ignore();
+    getline(in >> ws, premierePlace);
     cout << "Entrez la récompense de la deuxième place : ";
-    getline(in, deuxiemePlace);
-    in.ignore();
+    getline(in >> ws, deuxiemePlace);
     cout << "Entrez la récompense de la troisième place : ";
-    getline(in, troisiemePlace);
-    in.ignore();
+    getline(in >> ws, troisiemePlace);
     h.remplirGagnants(premierePlace, deuxiemePlace, troisiemePlace);
     return in;
 };
@@ -554,13 +553,10 @@ ostream& operator<<(ostream& out, Hackathon* h)
 // Surcharge de l'opérateur >> pour saisir les informations d'un hackathon*
 istream& operator>>(istream& in, Hackathon* h)
 {
-    Date d;
     cout << "Entrez le titre du hackathon : ";
-    getline(in, h->titre);
-    in.ignore();
+    getline(in >> ws, h->titre);
     cout << "Entrez la description du hackathon : ";
-    getline(in, h->description);
-    in.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(in >> ws, h->description);
     cout << "Entrez la date de debut du hackathon : ";
     in >> h->dateDeDebut;
     do
@@ -570,8 +566,7 @@ istream& operator>>(istream& in, Hackathon* h)
     }
     while (h->dateDeFin <= h->dateDeDebut);
     cout << "Entrez le theme du hackathon : ";
-    getline(in, h->theme);
-    in.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(in >> ws, h->theme);
     int continuer;
     do
     {
@@ -582,6 +577,7 @@ istream& operator>>(istream& in, Hackathon* h)
         {
             cout << "Veuillez saisir 1 si vous voulez ajouter un autre organisateur sinon 0: ";
             in >> continuer;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         while (continuer != 0 && continuer != 1);
     }
@@ -595,6 +591,7 @@ istream& operator>>(istream& in, Hackathon* h)
         {
             cout << "Veuillez saisir 1 si vous voulez ajouter un autre juge sinon 0: ";
             in >> continuer;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         while (continuer != 0 && continuer != 1);
     }
@@ -606,6 +603,7 @@ istream& operator>>(istream& in, Hackathon* h)
         {
             cout << "Choisissez le type de projet à ajouter (1 pour Projet Web, 2 pour Projet Embarque) : ";
             in >> choix;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         while (choix !=1 && choix!=2);
 
@@ -630,20 +628,18 @@ istream& operator>>(istream& in, Hackathon* h)
         {
             cout << "Veuillez saisir 1 si vous voulez ajouter un autre projet sinon 0: ";
             in >> continuer;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         while (continuer !=0 && continuer!=1);
     }
     while (continuer == 1);
     string premierePlace, deuxiemePlace, troisiemePlace;
     cout << "Entrez la récompense de la première place : ";
-    getline(in, premierePlace);
-    in.ignore();
+    getline(in >> ws, premierePlace);
     cout << "Entrez la récompense de la deuxième place : ";
-    getline(in, deuxiemePlace);
-    in.ignore();
+    getline(in >> ws, deuxiemePlace);
     cout << "Entrez la récompense de la troisième place : ";
-    getline(in, troisiemePlace);
-    in.ignore();
+    getline(in >> ws, troisiemePlace);
     h->remplirGagnants(premierePlace, deuxiemePlace, troisiemePlace);
     return in;
 };
@@ -806,7 +802,7 @@ void Hackathon::ajouterEquipeGagnante()
     for (Gagnant* gagnant : this->getGagnants())
     {
         int rangEquipe = gagnant->getRang();
-        string nomEquipe = gagnant->getProjet()->getEquipe()->getNom();
+        string nomEquipe = gagnant->getProjet()->getEquipe().getNom();
         equipeGagnante[rangEquipe] = nomEquipe;
     };
 };

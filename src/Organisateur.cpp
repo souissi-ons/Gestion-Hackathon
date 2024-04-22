@@ -19,7 +19,7 @@ Organisateur::Organisateur(int nci, string nom, string email, string role): Pers
 };
 
 // Desctructeur
-Organisateur::~Organisateur(){}
+Organisateur::~Organisateur(){};
 
 // Méthodes pour accéder et modifier les membres privés
 
@@ -59,23 +59,21 @@ ostream& operator<<(ostream& out, Organisateur& o) {
 istream& operator>>(istream& in, Organisateur& o) {
     cout << "Entrez le NCI de l'organisateur : ";
     in >> o.nci;
+    in.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << "Entrez le nom de l'organisateur : ";
-    getline(in, o.nom);
-    in.ignore();
+    getline(in >> ws, o.nom);
     cout << "Entrez l'email de l'organisateur : ";
-    getline(in, o.email);
-    in.ignore();
+    getline(in >> ws, o.email);
         int continuerNumeros;
     do {
         string numero;
         cout << "Entrez un numéro de téléphone : ";
-        getline(cin, numero);
-        in.ignore();
+        getline(in >> ws, numero);
         o.ajouterNumeroTelephone(numero);
-
         do {
             cout << "Veuillez saisir 1 si vous voulez ajouter un autre numéro de téléphone sinon 0: ";
-            cin >> continuerNumeros;
+            in >> continuerNumeros;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
         } while (continuerNumeros != 0 && continuerNumeros != 1);
     } while (continuerNumeros == 1);
 
@@ -83,18 +81,17 @@ istream& operator>>(istream& in, Organisateur& o) {
     do {
         string adresse;
         cout << "Entrez une adresse : ";
-        getline(cin, adresse);
-        in.ignore();
+        getline(in >> ws, adresse);
         o.ajouterAdresse(adresse);
 
         do {
             cout << "Veuillez saisir 1 si vous voulez ajouter une autre adresse sinon 0: ";
-            cin >> continuerAdresses;
+            in >> continuerAdresses;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
         } while (continuerAdresses != 0 && continuerAdresses != 1);
     } while (continuerAdresses == 1);
     cout << "Entrez le role de l'organisateur :" ;
     getline(in, o.role);
-    in.ignore(numeric_limits<streamsize>::max(), '\n');
     return in;
 };
 

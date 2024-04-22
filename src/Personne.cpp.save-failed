@@ -23,6 +23,12 @@ Personne::Personne(const Personne& p)
     this->nci = p.nci;
     this->nom = p.nom;
     this->email = p.email;
+     for (list<string*>::const_iterator it = p.numerosTelephone.begin(); it != p.numerosTelephone.end(); ++it) {
+        this->numerosTelephone.push_back(*it);
+    }
+    for (list<string*>::const_iterator it = p.adresses.begin(); it != p.adresses.end(); ++it) {
+        this->adresses.push_back(*it);
+    }
 };
 
 // Desctructeur
@@ -67,25 +73,25 @@ void Personne::setEmail(string email)
 };
 
 // Méthode pour obtenir la liste de numéros de téléphone
-list<string> Personne::getNumerosTelephone()
+list<string*> Personne::getNumerosTelephone()
 {
     return this->numerosTelephone;
 };
 
 // Méthode pour modifier la liste de numéros de téléphone
-void Personne::setNumerosTelephone(list<string> numerosTelephone)
+void Personne::setNumerosTelephone(list<string*> numerosTelephone)
 {
     this->numerosTelephone = numerosTelephone;
 };
 
 // Méthode pour obtenir la liste d'adresses
-list<string> Personne::getAdresses()
+list<string*> Personne::getAdresses()
 {
     return this->adresses;
 };
 
 // Méthode pour modifier la liste d'adresses
-void Personne::setAdresses( list<string> adresses)
+void Personne::setAdresses( list<string*> adresses)
 {
     this->adresses = adresses;
 };

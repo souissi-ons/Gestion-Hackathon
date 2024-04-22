@@ -8,7 +8,6 @@ using namespace std;
 
 class Personne
 {
-
 protected:
     int nci;
     string nom;
