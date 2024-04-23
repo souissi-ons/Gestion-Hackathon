@@ -1,0 +1,14 @@
+Nom de l'équipe: equipe1, Date de création de l'équipe: 10/3/2024
+Participants de l'equipe: 
+Participant 1: Cin du participant: 123456, Nom du participant: Participant 1, Email du participant: participant1@example.com
+Competences du participant: 
+Competence 1: Nom de la competence: Programmation, Description de la competence: Compétence en programmation
+Competence 2: Nom de la competence: Design, Description de la competence: Compétence en design
+Competence 3: Nom de la competence: Réseaux, Description de la competence: Compétence en réseaux
+Participant 2: Cin du participant: 123456, Nom du participant: Participant 1, Email du participant: participant1@example.com
+Competences du participant: 
+Competence 1: Nom de la competence: Programmation, Description de la competence: Compétence en programmation
+Competence 2: Nom de la competence: Design, Description de la competence: Compétence en design
+Competence 3: Nom de la competence: Réseaux, Description de la competence: Compétence en réseaux
+
+

@@ -1,0 +1,58 @@
+Hackathon: 
+
+Titre du hackathon: 11, Description du hackathon: 11
+Date de debut du hackathon: 11/11/11, Date de fin du hackathon: 12/11/11, Theme du hackathon: 11
+
+Organisateurs du hackathon:
+Organisateur 1: Cin de l'organisateur: 11, Nom de l'organisateur: 11, Email de l'organisateur: 11, Role de l'organisateur: 11
+Numeros de telephone de l'organisateur: 11, 
+Adresses de l'organisateur: 11, 
+
+Jury du hackathon:
+
+Membre du jury 1: 
+NCI: 11, Nom: 11, Email: 11, Expertise: 11
+Specialisations du membre jury:
+Numeros de telephone du membre jury: 11, 
+Adresses du membre jury: 11, 
+Specialisation 1: Nom: 11, Description: 11
+
+
+
+Projets du hackathon:
+
+Projet 1: 
+Projet web : Titre du projet: 11, Description du projet: 11
+Evaluation du projet : La note d'originalit√©: 11, la note de faisabilit√©: 11, la note de qualit√© de code: 11
+Equipe du projet: Nom de l'Èquipe: 11, Date de crÈation de l'Èquipe: 11/11/11
+Participants de l'equipe: 
+Participant 1: 
+Cin du participant: 11, Nom du participant: 11, Email du participant: 11
+Numeros de telephone du participant: 11, 
+Adresses du participant: 11, 
+Competences du participant: 
+Nom de la competence: 11, Description de la competence: 11
+Technologies du projet: 
+Technologie 1: Nom de la technologie: 11
+
+
+Gagnants du hackathon:
+
+Gagnant1: Rang du gagnant: 1, Recompense du gagnant: 11, Score du gagnant: 11
+Projet du gagnant: 
+Projet web : Titre du projet: 11, Description du projet: 11
+Evaluation du projet : La note d'originalit√©: 11, la note de faisabilit√©: 11, la note de qualit√© de code: 11
+Equipe du projet: Nom de l'Èquipe: 11, Date de crÈation de l'Èquipe: 11/11/11
+Participants de l'equipe: 
+Participant 1: 
+Cin du participant: 11, Nom du participant: 11, Email du participant: 11
+Numeros de telephone du participant: 11, 
+Adresses du participant: 11, 
+Competences du participant: 
+Nom de la competence: 11, Description de la competence: 11
+Technologies du projet: 
+Technologie 1: Nom de la technologie: 11
+
+
+
+
